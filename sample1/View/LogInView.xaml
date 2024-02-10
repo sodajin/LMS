@@ -144,13 +144,12 @@
                             <TextBlock Style="{StaticResource LogInDetails}" Text="PASSWORD"/>
                         </StackPanel>
                         <StackPanel Width="225" Height="30">
-                            <PasswordBox x:Name="enterPassword" Style="{StaticResource LogInPasswordBox}" Height="30" />
+                            <TextBox x:Name="enterPassword" Style="{StaticResource LogInInputBox}" Height="30" Text="{Binding MemberPassword}"/>
                         </StackPanel>
 
                         <!-- Authentication -->
                         <StackPanel Margin="0,20,0,0"  Width="224" Height="26">
-                            <TextBlock x:Name="txtSuccessMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Visibility="Collapsed"/>
-                            <TextBlock x:Name="txtErrorMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Visibility="Collapsed">
+                            <TextBlock x:Name="txtAuthMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Text="{Binding AuthMessage, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBlock.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </TextBlock.RenderTransform>

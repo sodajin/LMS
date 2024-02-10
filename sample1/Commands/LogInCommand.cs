@@ -30,12 +30,14 @@ namespace LibraryManagementSystem.Commands
             string username = "Test";
             string password = "password";
 
-            if (_viewModel.MemberUsername == username)
+            if (_viewModel.MemberUsername == username && _viewModel.MemberPassword == password)
             {
+                _viewModel.AuthMessage = "WELCOME";
                 _navigationStore.CurrentViewModel = _createAdminDashboardViewModel();
                 return;
             }
 
+            _viewModel.AuthMessage = "INVALID CREDENTIALS";
             _viewModel.ShakeAuth = true;
             _viewModel.ShakeAuth = false;
         }

@@ -45,6 +45,18 @@ namespace LibraryManagementSystem.ViewModel
             }
         }
 
+        private string _authMessage;
+        public string AuthMessage
+        {
+            get => _authMessage;
+            set
+            {
+                _authMessage = value;
+                OnPropertyChanged(nameof(_authMessage));
+            }
+        }
+
+
         private bool _shakeAuth;
         public bool ShakeAuth
         {

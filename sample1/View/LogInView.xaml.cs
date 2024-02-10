@@ -27,7 +27,7 @@ namespace sample1.View
             InitializeComponent();
 
             timer = new DispatcherTimer();
-            timer.Tick += TimerTick;
+            //timer.Tick += TimerTick;
             timer.Interval = TimeSpan.FromSeconds(5);
         }
 
@@ -35,26 +35,26 @@ namespace sample1.View
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = userName.Text;
-            string password = enterPassword.Password;
+            //string password = enterPassword.Password;
 
             string validUsername = "demo";
             string validPassword = "password";
 
-            if (username == validUsername && password == validPassword)
-            {
-                txtSuccessMessage.Visibility = Visibility.Visible;
-                txtSuccessMessage.Text = "WELCOME";
-            }
-            else
-            {
-                txtErrorMessage.Visibility = Visibility.Visible;
+            //if (username == validUsername && password == validPassword)
+            //{
+            //    txtSuccessMessage.Visibility = Visibility.Visible;
+            //    txtSuccessMessage.Text = "WELCOME";
+            //}
+            //else
+            //{
+            //    txtErrorMessage.Visibility = Visibility.Visible;
                 
-                //StartShakeAnimation(txtErrorMessage);
+            //    //StartShakeAnimation(txtErrorMessage);
                 
-                txtErrorMessage.Text = "INVALID CREDENTIALS";
+            //    txtErrorMessage.Text = "INVALID CREDENTIALS";
                 
-                //timer.Start();
-            }
+            //    //timer.Start();
+            //}
         }
 
         // Shake error message
@@ -78,13 +78,13 @@ namespace sample1.View
         //}
 
         // Make error message disappear
-        private void TimerTick(object sender, EventArgs e)
-        {
-            timer.Stop();
+        //private void TimerTick(object sender, EventArgs e)
+        //{
+        //    timer.Stop();
 
-            txtErrorMessage.Visibility = Visibility.Collapsed;
-            txtErrorMessage.Text = string.Empty;
-        }
+        //    txtErrorMessage.Visibility = Visibility.Collapsed;
+        //    txtErrorMessage.Text = string.Empty;
+        //}
 
     }
 
