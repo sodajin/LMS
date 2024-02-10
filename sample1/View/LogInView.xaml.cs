@@ -49,33 +49,33 @@ namespace sample1.View
             {
                 txtErrorMessage.Visibility = Visibility.Visible;
                 
-                StartShakeAnimation(txtErrorMessage);
+                //StartShakeAnimation(txtErrorMessage);
                 
                 txtErrorMessage.Text = "INVALID CREDENTIALS";
                 
-                timer.Start();
+                //timer.Start();
             }
         }
 
         // Shake error message
-        private void StartShakeAnimation(TextBlock textBlock)
-        {
-            TimeSpan duration = TimeSpan.FromSeconds(1);
+        //private void StartShakeAnimation(TextBlock textBlock)
+        //{
+        //    TimeSpan duration = TimeSpan.FromSeconds(1);
 
-            DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames {Duration = duration};
+        //    DoubleAnimationUsingKeyFrames animation = new DoubleAnimationUsingKeyFrames {Duration = duration};
         
-            // Define keyframes for the animation
-            double[] keyframeValues = { 0, -5, 5, -5, 5, -5, 5, -5, 5, -5, 0 };
-            double[] keyframeTimes = { 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 };
+        //    // Define keyframes for the animation
+        //    double[] keyframeValues = { 0, -5, 5, -5, 5, -5, 5, -5, 5, -5, 0 };
+        //    double[] keyframeTimes = { 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 };
 
-            for (int i = 0; i < keyframeValues.Length; i++)
-            {
-                animation.KeyFrames.Add(new DiscreteDoubleKeyFrame(keyframeValues[i], KeyTime.FromTimeSpan(TimeSpan.FromSeconds(keyframeTimes[i]))));
-            }
+        //    for (int i = 0; i < keyframeValues.Length; i++)
+        //    {
+        //        animation.KeyFrames.Add(new DiscreteDoubleKeyFrame(keyframeValues[i], KeyTime.FromTimeSpan(TimeSpan.FromSeconds(keyframeTimes[i]))));
+        //    }
 
-            textBlock.RenderTransform = new TranslateTransform();
-            textBlock.RenderTransform.BeginAnimation(TranslateTransform.XProperty, animation);
-        }
+        //    textBlock.RenderTransform = new TranslateTransform();
+        //    textBlock.RenderTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+        //}
 
         // Make error message disappear
         private void TimerTick(object sender, EventArgs e)

@@ -33,7 +33,11 @@ namespace LibraryManagementSystem.Commands
             if (_viewModel.MemberUsername == username)
             {
                 _navigationStore.CurrentViewModel = _createAdminDashboardViewModel();
+                return;
             }
+
+            _viewModel.ShakeAuth = true;
+            _viewModel.ShakeAuth = false;
         }
     }
 }

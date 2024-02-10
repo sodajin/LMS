@@ -45,6 +45,20 @@ namespace LibraryManagementSystem.ViewModel
             }
         }
 
+        private bool _shakeAuth;
+        public bool ShakeAuth
+        {
+            get { return _shakeAuth; }
+            set
+            {
+                if (_shakeAuth != value)
+                {
+                    _shakeAuth = value;
+                    OnPropertyChanged(nameof(ShakeAuth));
+                }
+            }
+        }
+
         public ICommand LogInButton { get; }
 
         public LogInViewModel(NavigationStore navigationStore, Func<ViewModelBase> createAdminDashboardViewModel) 

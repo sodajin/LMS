@@ -6,6 +6,39 @@
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1200">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="ShakeAuthentication">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="0" To="5" Duration="0:0:0.1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="5" To="-5" BeginTime="0:0:0.1" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-5" To="5" BeginTime="0:0:0.2" Duration="0:0:0.1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="5" To="-5" BeginTime="0:0:0.3" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-5" To="5" BeginTime="0:0:0.4" Duration="0:0:0.1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="5" To="-5" BeginTime="0:0:0.5" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-5" To="5" BeginTime="0:0:0.6" Duration="0:0:0.1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="5" To="-5" BeginTime="0:0:0.7" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-5" To="5" BeginTime="0:0:0.8" Duration="0:0:0.1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="5" To="-5" BeginTime="0:0:0.9" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-5" To="0" BeginTime="0:0:1" Duration="0:0:0.1"/>
+
+        </Storyboard>
+    </UserControl.Resources>
     <Border>
 
         <Grid>
@@ -116,8 +149,24 @@
 
                         <!-- Authentication -->
                         <StackPanel Margin="0,20,0,0"  Width="224" Height="26">
-                            <TextBlock x:Name="txtErrorMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Visibility="Collapsed"/>
                             <TextBlock x:Name="txtSuccessMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Visibility="Collapsed"/>
+                            <TextBlock x:Name="txtErrorMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Visibility="Collapsed">
+                                <TextBlock.RenderTransform>
+                                    <TranslateTransform X="0" Y="0"/>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShakeAuth}" Value="True">
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard Storyboard="{StaticResource ShakeAuthentication}"/>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
                         </StackPanel>
 
                         <!-- Login button -->
