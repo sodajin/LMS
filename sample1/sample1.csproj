@@ -156,6 +156,10 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
+    <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\BorrowedBook.cs" />
+    <Compile Include="Model\Library.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModel\AdminDashboardViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
@@ -227,9 +231,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\LogInBackground\IMG-01.png" />
     <Resource Include="Resources\LogInBackground\IMG-02.png" />
