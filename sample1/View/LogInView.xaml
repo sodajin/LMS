@@ -11,36 +11,30 @@
         <Storyboard x:Key="ShakeAuthentication">
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="0" To="5" Duration="0:0:0.1"/>
-
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="5" To="-5" BeginTime="0:0:0.1" Duration="0:0:0.1"/>
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-5" To="5" BeginTime="0:0:0.2" Duration="0:0:0.1"/>
-
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="5" To="-5" BeginTime="0:0:0.3" Duration="0:0:0.1"/>
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-5" To="5" BeginTime="0:0:0.4" Duration="0:0:0.1"/>
-
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="5" To="-5" BeginTime="0:0:0.5" Duration="0:0:0.1"/>
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-5" To="5" BeginTime="0:0:0.6" Duration="0:0:0.1"/>
-
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="5" To="-5" BeginTime="0:0:0.7" Duration="0:0:0.1"/>
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-5" To="5" BeginTime="0:0:0.8" Duration="0:0:0.1"/>
-
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="5" To="-5" BeginTime="0:0:0.9" Duration="0:0:0.1"/>
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                          From="-5" To="0" BeginTime="0:0:1" Duration="0:0:0.1"/>
-
         </Storyboard>
     </UserControl.Resources>
-    <Border>
 
+    <Border>
         <Grid>
 
             <!-- Transition images in the background -->
@@ -87,7 +81,6 @@
 
             <!-- Purple tint -->
             <Border BorderThickness=".3" Opacity=".5">
-
                 <Border.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Color="#C86BFA" Offset="0"/>
@@ -95,7 +88,6 @@
                         <GradientStop Color="#3d0066" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.BorderBrush>
-
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                         <GradientStop Color="#C86BFA" Offset="0"/>
@@ -103,24 +95,19 @@
                         <GradientStop Color="#3d0066" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-
             </Border>
-          
+
             <!-- Login box -->
             <Grid x:Name="LoginBox" RenderTransformOrigin="0.5,0.5">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="320"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
                 <StackPanel Width="270" Grid.Row="1" Orientation="Vertical" Margin="0,30,0,0">
                     <Image Source="/Resources/LOGO_01.png"/>
                 </StackPanel>
-
                 <Border CornerRadius="20" Background="#5C0099" Margin="450,0,450,55" Opacity=".76" Grid.Row="2" Width="300">
-
                     <StackPanel>
 
                         <!-- Member ID -->
@@ -149,7 +136,7 @@
 
                         <!-- Authentication -->
                         <StackPanel Margin="0,20,0,0"  Width="224" Height="26">
-                            <TextBlock x:Name="txtAuthMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="#e6f2ff" Text="{Binding AuthMessage, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBlock x:Name="txtAuthMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="White" Text="{Binding AuthMessage, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBlock.RenderTransform>
                                     <TranslateTransform X="0" Y="0"/>
                                 </TextBlock.RenderTransform>
@@ -165,39 +152,31 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-
                         </StackPanel>
-
+                        
                         <!-- Login button -->
                         <StackPanel Margin="0,20,0,0" Width="224" Height="37">
                             <Button x:Name="logInBtn" Style="{StaticResource PrimaryBtn}" Content="LOG IN" Click="LoginButton_Click" Height="36" FontSize="16" Command="{Binding LogInButton}"/>
                         </StackPanel>
-
                     </StackPanel>
-
                 </Border>
                 
                 <!-- Animate Login Box -->
                 <Grid.RenderTransform>
                     <TranslateTransform/>
                 </Grid.RenderTransform>
-
                 <Grid.Triggers>
                     <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetName="LoginBox"
                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                    From="0" To="-15" Duration="0:0:3" />
+                                    From="0" To="-15" Duration="0:0:2" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
                 </Grid.Triggers>
-
             </Grid>
-
         </Grid>
-
     </Border>
-
 </UserControl>
