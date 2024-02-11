@@ -8,6 +8,7 @@ namespace LibraryManagementSystem.ViewModel
 {
     public class AdminDashboardViewModel : ViewModelBase
     {
+        public string Name;
         public AdminDashboardViewModel()
         {
 
