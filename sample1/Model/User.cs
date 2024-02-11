@@ -21,7 +21,6 @@ namespace LibraryManagementSystem.Model
         public string Username { get; }
         public string Password { get; }
         public AccountType AccountType { get; }
-        
         public User(
             string id,
             string firstName,

@@ -17,8 +17,13 @@ namespace LibraryManagementSystem.Model
         Technology,
         Arts,
         Literature,
-        History,
-        Geography
+        HistoryAndGeography
+    }
+    public enum BookStatus
+    {
+        ForViewing,
+        Available,
+        Unavailable
     }
     public class Book
     {
@@ -28,13 +33,15 @@ namespace LibraryManagementSystem.Model
         public string Publisher { get; }
         public DateTime PublishedDate { get; }
         public Genre Genre { get; }
+        public BookStatus Status { get; set; }
         public Book (
             ulong isbn,
             string title,
             string author,
             string publisher,
             DateTime publishedDate,
-            Genre genre
+            Genre genre,
+            BookStatus status
         ) {
             this.ISBN = isbn;
             this.Title = title;
@@ -42,6 +49,12 @@ namespace LibraryManagementSystem.Model
             this.Publisher = publisher;
             this.PublishedDate = publishedDate;
             this.Genre = genre;
+            this.Status = status;
+        }
+
+        public override string ToString()
+        {
+            return this.Title;
         }
     }
 }
