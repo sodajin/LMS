@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Model
 {
+    public enum Genre
+    {
+        GeneralWorks,
+        Philosophy,
+        Religion,
+        SocialScience,
+        Language,
+        Science,
+        Technology,
+        Arts,
+        Literature,
+        History,
+        Geography
+    }
     public class Book
     {
         public ulong ISBN { get; }
@@ -13,14 +27,14 @@ namespace LibraryManagementSystem.Model
         public string Author { get; }
         public string Publisher { get; }
         public DateTime PublishedDate { get; }
-        public string Genre { get; }
-        public Book(
+        public Genre Genre { get; }
+        public Book (
             ulong isbn,
             string title,
             string author,
             string publisher,
             DateTime publishedDate,
-            string genre
+            Genre genre
         ) {
             this.ISBN = isbn;
             this.Title = title;
