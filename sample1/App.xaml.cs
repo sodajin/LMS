@@ -1,4 +1,5 @@
-﻿using LibraryManagementSystem.Store;
+﻿using LibraryManagementSystem.Model;
+using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,43 @@ namespace sample1
     public partial class App : Application
     {
         private NavigationStore _navigationStore;
+        private Library _library;
+        private UserList _users;
 
         public App()
         {
-            _navigationStore = new NavigationStore();   
+            _navigationStore = new NavigationStore();
+            _library = new Library();
+            _users = new UserList();
+            _library.AddBook(new Book(
+                9784091273437,
+                "Komi-san Can't Communicate",
+                "Tomohito Oda",
+                "Shogakukan",
+                new DateTime(2016, 9, 16),
+                Genre.Arts,
+                BookStatus.Available
+                )
+            );
+
+            _users.SignUp(new User(
+                "2021-10945-MN-0",
+                "Genesis",
+                "Cornista",
+                "Lovino",
+                "lezzthanthree",
+                "password",
+                AccountType.Admin
+                ));
+            _users.SignUp(new User(
+                "2021-10946-MN-0",
+                "Smilie",
+                "",
+                "Pop",
+                "smiliep",
+                "password",
+                AccountType.Simple
+                ));
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -35,12 +69,17 @@ namespace sample1
 
         private LogInViewModel CreateLogInViewModel()
         {
-            return new LogInViewModel(_navigationStore, CreateAdminDashboardViewModel);
+            return new LogInViewModel(_navigationStore, _users, CreateMemberDashboardViewModel, CreateAdminDashboardViewModel);
+        }
+
+        private MemberDashboardViewModel CreateMemberDashboardViewModel()
+        {
+            return new MemberDashboardViewModel(_navigationStore, CreateLogInViewModel, _library);
         }
 
         private AdminDashboardViewModel CreateAdminDashboardViewModel() 
         {
-            return new AdminDashboardViewModel(_navigationStore, CreateLogInViewModel);
+            return new AdminDashboardViewModel(_navigationStore, CreateLogInViewModel, _library);
         }
     }
 }

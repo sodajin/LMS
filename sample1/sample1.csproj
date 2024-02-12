@@ -158,6 +158,8 @@
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\LogOutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Model\UserList.cs" />
+    <Compile Include="ViewModel\MemberDashboardViewModel.cs" />
     <Compile Include="View\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>

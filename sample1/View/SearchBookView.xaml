@@ -32,7 +32,7 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView x:Name="lsvClasses" Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" SelectionMode="Single" ItemsSource="{Binding BooksTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="lsvClasses" Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BooksTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Background" Value="#dad9d7" />

@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Commands;
+using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace LibraryManagementSystem.ViewModel
 {
     public class LogInViewModel : ViewModelBase
     {
+        private readonly Func<ViewModelBase> _createMemberDashboardViewModel;
         private readonly Func<ViewModelBase> _createAdminDashboardViewModel;
         private readonly NavigationStore _navigationStore;
+        private readonly UserList _users;
         private string _memberID;
         public string MemberID
         {
@@ -75,12 +78,17 @@ namespace LibraryManagementSystem.ViewModel
 
         public ICommand LogInButton { get; }
 
-        public LogInViewModel(NavigationStore navigationStore, Func<ViewModelBase> createAdminDashboardViewModel) 
+        public LogInViewModel(
+            NavigationStore navigationStore, 
+            UserList users,
+            Func<ViewModelBase> createMemberDashboardViewModel,
+            Func<ViewModelBase> createAdminDashboardViewModel) 
         {
             _navigationStore = navigationStore;
+            _users = users;
+            _createMemberDashboardViewModel = createMemberDashboardViewModel;
             _createAdminDashboardViewModel = createAdminDashboardViewModel;
-            LogInButton = new LogInCommand(this, _navigationStore, _createAdminDashboardViewModel, this.InvalidCredentials);
-
+            LogInButton = new LogInCommand(this, _navigationStore, _createMemberDashboardViewModel, _createAdminDashboardViewModel, _users, this.InvalidCredentials);
         }
     }
 }

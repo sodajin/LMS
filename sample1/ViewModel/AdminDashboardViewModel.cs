@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.Commands;
+using LibraryManagementSystem.Model;
 
 namespace LibraryManagementSystem.ViewModel
 {
@@ -14,6 +15,7 @@ namespace LibraryManagementSystem.ViewModel
         public string Name;
 
         private readonly NavigationStore _navigationStore;
+        private readonly Library _library;
 
         private NavigationStore _dashboardNavigationStore;
         public ViewModelBase CurrentDashboardViewModel => _dashboardNavigationStore.CurrentViewModel;
@@ -24,11 +26,11 @@ namespace LibraryManagementSystem.ViewModel
         public ICommand ManageMembersCommand { get; }
         public ICommand LogOutCommand { get; }
 
-        public AdminDashboardViewModel(NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel)
+        public AdminDashboardViewModel(NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library)
         {
             _navigationStore = navigationStore;
+            _library = library;
             _dashboardNavigationStore = new NavigationStore();
-            _dashboardNavigationStore.CurrentViewModel = CreateSearchBooksViewModel();
             _dashboardNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             SearchBooksCommand = new NavigateCommand(_dashboardNavigationStore, CreateSearchBooksViewModel);

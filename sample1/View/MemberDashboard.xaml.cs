@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryManagementSystem
+namespace sample1.View
 {
     /// <summary>
     /// Interaction logic for MemberDashboard.xaml

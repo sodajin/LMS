@@ -23,6 +23,9 @@
             <DataTemplate DataType="{x:Type vms:AdminDashboardViewModel}">
                 <views:AdminDashboard/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MemberDashboardViewModel}">
+                <views:MemberDashboard/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

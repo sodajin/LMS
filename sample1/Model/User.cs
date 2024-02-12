@@ -38,5 +38,13 @@ namespace LibraryManagementSystem.Model
             this.Password = password;
             this.AccountType = accountType;
         }
+
+        public bool Match(string id, string username, string password)
+        {
+            if (this.ID == id &&
+                this.Username == username &&
+                this.Password == password) return true;
+            return false;
+        }
     }
 }
