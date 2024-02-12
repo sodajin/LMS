@@ -52,20 +52,15 @@
     <!-- Dashboard Buttons-->
     <Style x:Key="DashboardBtn" TargetType="RadioButton">
         <Setter Property="Height" Value="60"/>
+        <Setter Property="Margin" Value="-6,0,0,5"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Wheat"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}">
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    Margin="30,0,0,0">
-                            <Icons:PackIconMaterial Kind="Book"/>
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="6,0,0,0">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -74,22 +69,24 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5"/>
-                <Setter Property="Background" Value="#EDE7E3"/>
-                <Setter Property="Foreground" Value="#01161E"/>
-                <Setter Property="BorderBrush" Value="#489FB5"/>
+                <Setter Property="Background" Value="#3c096c"/>
+                <Setter Property="Foreground" Value="#ffee32"/>
+                <Setter Property="BorderBrush" Value="#ffee32"/>
+                <Setter Property="Opacity" Value=".8"/>
             </Trigger>
 
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="#AEC3B0"/>
-                <Setter Property="BorderBrush" Value="#489FB5"/>
+                <Setter Property="Background" Value="#240046"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderBrush" Value="#ffee32"/>
+                <Setter Property="Opacity" Value=".8"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="DashboardBtnIcon" TargetType="Button">
-        <Setter Property="Foreground" Value="#01161E"/>
+    <Style x:Key="DashboardBtnIcon" TargetType="Icons:PackIconMaterial">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Margin" Value="15,0,20,0"/>

@@ -1,12 +1,10 @@
-﻿<UserControl x:Class="sample1.View.AdminDashboard"
+﻿<UserControl x:Class="LibraryManagementSystem.MemberDashboard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vms="clr-namespace:LibraryManagementSystem.ViewModel"
-             xmlns:views="clr-namespace:sample1.View"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:local="clr-namespace:sample1.View"
+             xmlns:local="clr-namespace:LibraryManagementSystem"
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1200">
     <Border>
@@ -18,7 +16,7 @@
 
             <Border Grid.Column="0">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Resources/DashboardBackground/IMG_09.png"/>
+                    <ImageBrush ImageSource="/Resources/DashboardBackground/IMG_10.png"/>
                 </Border.Background>
             </Border>
 
@@ -60,29 +58,29 @@
 
                     <RadioButton Grid.Row="0" Style="{StaticResource DashboardBtn}" Cursor="Hand">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <Icons:PackIconMaterial Kind="BookSearch" Style="{StaticResource DashboardBtnIcon}" />
+                            <Icons:PackIconMaterial Kind="Magnify" Style="{StaticResource DashboardBtnIcon}" />
                             <TextBlock Text="Search Books" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <Icons:PackIconMaterial Kind="CheckboxBlankBadge" Style="{StaticResource DashboardBtnIcon}" />
-                            <TextBlock Text="Requests" Style="{StaticResource DashboardBtnTxt}"/>
+                            <Icons:PackIconMaterial Kind="BookOpenPageVariant" Style="{StaticResource DashboardBtnIcon}" />
+                            <TextBlock Text="Browse Books" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Grid.Row="4" Style="{StaticResource DashboardBtn}" Cursor="Hand">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="Bookshelf" Style="{StaticResource DashboardBtnIcon}" />
-                            <TextBlock Text="Manage Books" Style="{StaticResource DashboardBtnTxt}"/>
+                            <TextBlock Text="Borrowed Books" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
                     <RadioButton Grid.Row="6" Style="{StaticResource DashboardBtn}" Cursor="Hand">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <Icons:PackIconMaterial Kind="AccountGroupOutline" Style="{StaticResource DashboardBtnIcon}"/>
-                            <TextBlock Text="Manage Members" Style="{StaticResource DashboardBtnTxt}"/>
+                            <Icons:PackIconMaterial Kind="AccountDetails" Style="{StaticResource DashboardBtnIcon}"/>
+                            <TextBlock Text="View Account" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -117,32 +115,19 @@
                             </Style>
                         </Button.Style>
                     </Button>
+
                 </Grid>
 
             </Grid>
 
             <Border Grid.Column="1" Background="White">
                 <Border.Resources>
+                    <DataTemplate DataType="{}">
 
-                    <DataTemplate DataType="{x:Type vms:SearchBooksViewModel}">
-                        <views:SearchBooksView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:RequestsViewModel}">
-                        <views:RequestsView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:ManageBooksViewModel}">
-                        <views:ManageBooksView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vms:ManageMembersViewModel}">
-                        <views:ManageMembersView/>
                     </DataTemplate>
                 </Border.Resources>
-
-                <ContentControl Content="{Binding CurrentDashboardViewModel}"/>
-
             </Border>
 
         </Grid>
-
     </Border>
 </UserControl>

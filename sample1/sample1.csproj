@@ -158,6 +158,9 @@
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\LogOutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="View\MemberDashboard.xaml.cs">
+      <DependentUpon>MemberDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\BorrowedBook.cs" />
     <Compile Include="Model\Library.cs" />
@@ -189,6 +192,10 @@
     <Compile Include="View\SearchBookView.xaml.cs">
       <DependentUpon>SearchBookView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\MemberDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AdminDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,7 +272,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\DashboardBackground\IMG_09.png" />
+    <Resource Include="Resources\DashboardBackground\IMG_10.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\LogInBackground\IMG-01.png" />
     <Resource Include="Resources\LogInBackground\IMG-02.png" />
