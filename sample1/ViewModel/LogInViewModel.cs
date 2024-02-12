@@ -52,7 +52,7 @@ namespace LibraryManagementSystem.ViewModel
             set
             {
                 _authMessage = value;
-                OnPropertyChanged(nameof(_authMessage));
+                OnPropertyChanged(nameof(AuthMessage));
             }
         }
 
@@ -60,7 +60,7 @@ namespace LibraryManagementSystem.ViewModel
         private bool _shakeAuth = false;
         public bool ShakeAuth
         {
-            get { return _shakeAuth; }
+            get => _shakeAuth;
             set
             {
                 _shakeAuth = value;
@@ -79,7 +79,8 @@ namespace LibraryManagementSystem.ViewModel
         {
             _navigationStore = navigationStore;
             _createAdminDashboardViewModel = createAdminDashboardViewModel;
-            LogInButton = new LogInCommand(this, _navigationStore, _createAdminDashboardViewModel);
+            LogInButton = new LogInCommand(this, _navigationStore, _createAdminDashboardViewModel, this.InvalidCredentials);
+
         }
     }
 }

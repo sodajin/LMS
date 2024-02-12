@@ -117,17 +117,29 @@
                             </Style>
                         </Button.Style>
                     </Button>
-
                 </Grid>
 
             </Grid>
 
             <Border Grid.Column="1" Background="White">
                 <Border.Resources>
-                    <DataTemplate DataType="{}">
 
+                    <DataTemplate DataType="{x:Type vms:SearchBooksViewModel}">
+                        <views:SearchBooksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:RequestsViewModel}">
+                        <views:RequestsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ManageBooksViewModel}">
+                        <views:ManageBooksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ManageMembersViewModel}">
+                        <views:ManageMembersView/>
                     </DataTemplate>
                 </Border.Resources>
+
+                <ContentControl Content="{Binding CurrentDashboardViewModel}"/>
+
             </Border>
 
         </Grid>

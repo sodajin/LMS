@@ -156,6 +156,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
+    <Compile Include="Commands\LogOutCommand.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="View\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>
@@ -167,12 +169,28 @@
     <Compile Include="ViewModel\AdminDashboardViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ManageBooksViewModel.cs" />
+    <Compile Include="ViewModel\ManageMembersViewModel.cs" />
+    <Compile Include="ViewModel\RequestsViewModel.cs" />
+    <Compile Include="ViewModel\SearchBooksViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageBooksView.xaml.cs">
+      <DependentUpon>ManageBooksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManageMembersView.xaml.cs">
+      <DependentUpon>ManageMembersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RequestsView.xaml.cs">
+      <DependentUpon>RequestsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SearchBookView.xaml.cs">
+      <DependentUpon>SearchBookView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MemberDashboard.xaml">
       <SubType>Designer</SubType>
@@ -207,6 +225,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LogInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageBooksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManageMembersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RequestsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SearchBookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
