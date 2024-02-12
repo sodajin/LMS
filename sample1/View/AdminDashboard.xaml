@@ -52,28 +52,28 @@
                         
                     </Grid>
                     <Border Grid.Row="1" Margin="0,10" Background="#8c52ff" >
-                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15">
+                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15" Command="{Binding SearchBooksCommand}">
                             Search Books
                         </Button>
                     </Border>
                     <Border Grid.Row="2" Margin="0,10" Background="#8c52ff" >
-                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15">
+                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15" Command="{Binding RequestsCommand}">
                             Requests
                         </Button>
                     </Border>
                     <Border Grid.Row="3" Margin="0,10" Background="#8c52ff" >
-                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15">
+                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15" Command="{Binding ManageBooksCommand}">
                             Manage Books
                         </Button>
                     </Border>
                     <Border Grid.Row="4" Margin="0,10" Background="#8c52ff" >
-                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15">
+                        <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="0,15" Command="{Binding ManageMembersCommand}">
                             Manage Members
                         </Button>
                     </Border>
                     <Grid Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <Border Grid.Row="5" Margin="15" Background="#8c52ff">
-                            <Button Background="{x:Null}" Foreground="White" FontSize="15" Padding="10,5">
+                            <Button Background="{x:Null}" Foreground="White" FontSize="15" Padding="10,5" Command="{Binding LogOutCommand}">
                                 Log Out
                             </Button>
                         </Border>
@@ -84,10 +84,22 @@
             <Border Grid.Column="1"
                     Background="White">
                 <Border.Resources>
-                    <DataTemplate DataType="{}">
-                        
+                    <DataTemplate DataType="{x:Type vms:SearchBooksViewModel}">
+                        <views:SearchBooksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:RequestsViewModel}">
+                        <views:RequestsView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ManageBooksViewModel}">
+                        <views:ManageBooksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ManageMembersViewModel}">
+                        <views:ManageMembersView/>
                     </DataTemplate>
                 </Border.Resources>
+
+                <ContentControl Content="{Binding CurrentDashboardViewModel}"/>
+
             </Border>
 
         </Grid>
