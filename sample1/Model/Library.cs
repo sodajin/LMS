@@ -19,5 +19,9 @@ namespace LibraryManagementSystem.Model
         {
             Books.Add(book);
         }
+        public List<Book> GetBooks() 
+        {
+            return Books;
+        }
     }
 }

@@ -25,8 +25,19 @@ namespace sample1
             _navigationStore = new NavigationStore();
             _library = new Library();
             _users = new UserList();
+
             _library.AddBook(new Book(
                 9784091273437,
+                "Kimetsu no Yaiba, Vol. 1",
+                "Koyoharu Gotouge",
+                "VIZ Media LLC",
+                new DateTime(2016, 2, 15),
+                Genre.Arts,
+                BookStatus.Available
+                )
+            );
+            _library.AddBook(new Book(
+                9781974700523,
                 "Komi-san Can't Communicate",
                 "Tomohito Oda",
                 "Shogakukan",
@@ -43,6 +54,15 @@ namespace sample1
                 "Lovino",
                 "lezzthanthree",
                 "password",
+                AccountType.Admin
+                ));
+            _users.SignUp(new User(
+                "a",
+                "Anthonette",
+                "Villafuente",
+                "Macapanas",
+                "a",
+                "a",
                 AccountType.Admin
                 ));
             _users.SignUp(new User(
@@ -77,9 +97,9 @@ namespace sample1
             return new MemberDashboardViewModel(_navigationStore, CreateLogInViewModel, _library);
         }
 
-        private AdminDashboardViewModel CreateAdminDashboardViewModel() 
+        private AdminDashboardViewModel CreateAdminDashboardViewModel(User user) 
         {
-            return new AdminDashboardViewModel(_navigationStore, CreateLogInViewModel, _library);
+            return new AdminDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library);
         }
     }
 }

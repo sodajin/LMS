@@ -13,7 +13,7 @@ namespace LibraryManagementSystem.ViewModel
     public class LogInViewModel : ViewModelBase
     {
         private readonly Func<ViewModelBase> _createMemberDashboardViewModel;
-        private readonly Func<ViewModelBase> _createAdminDashboardViewModel;
+        private readonly Func<User, ViewModelBase> _createAdminDashboardViewModel;
         private readonly NavigationStore _navigationStore;
         private readonly UserList _users;
         private string _memberID;
@@ -82,7 +82,7 @@ namespace LibraryManagementSystem.ViewModel
             NavigationStore navigationStore, 
             UserList users,
             Func<ViewModelBase> createMemberDashboardViewModel,
-            Func<ViewModelBase> createAdminDashboardViewModel) 
+            Func<User, ViewModelBase> createAdminDashboardViewModel) 
         {
             _navigationStore = navigationStore;
             _users = users;

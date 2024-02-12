@@ -32,7 +32,7 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView x:Name="lsvClasses" Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BooksTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Background" Value="#dad9d7" />
@@ -41,61 +41,40 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                 </Style>
             </ListView.ItemContainerStyle>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
-            <ListViewItem/>
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
                     <GridViewColumn Header="Title" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Komi Can't Communicate (Volume 1)" />
+                                <TextBlock Text="{Binding Title}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Author" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Tomohito Oda" />
+                                <TextBlock Text="{Binding Author}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Genre" Width="120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Arts" />
+                                <TextBlock Text="{Binding Genre}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Year Published" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="2016" />
+                                <TextBlock Text="{Binding PublishedYear}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Status" Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="Available" />
+                                <TextBlock Text="{Binding Status}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

@@ -12,10 +12,10 @@ namespace LibraryManagementSystem.ViewModel
 {
     public class AdminDashboardViewModel : ViewModelBase
     {
-        public string Name;
 
         private readonly NavigationStore _navigationStore;
         private readonly Library _library;
+        private readonly User _user;
 
         private NavigationStore _dashboardNavigationStore;
         public ViewModelBase CurrentDashboardViewModel => _dashboardNavigationStore.CurrentViewModel;
@@ -26,8 +26,11 @@ namespace LibraryManagementSystem.ViewModel
         public ICommand ManageMembersCommand { get; }
         public ICommand LogOutCommand { get; }
 
-        public AdminDashboardViewModel(NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library)
+        public string Name => _user.FirstName;
+
+        public AdminDashboardViewModel(User user, NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library)
         {
+            _user = user;
             _navigationStore = navigationStore;
             _library = library;
             _dashboardNavigationStore = new NavigationStore();
@@ -42,7 +45,7 @@ namespace LibraryManagementSystem.ViewModel
 
         private SearchBooksViewModel CreateSearchBooksViewModel()
         {
-            return new SearchBooksViewModel();
+            return new SearchBooksViewModel(_library);
         }
         private RequestsViewModel CreateRequestsViewModel()
         {
@@ -50,11 +53,15 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ManageBooksViewModel CreateManageBooksViewModel()
         {
-            return new ManageBooksViewModel();
+            return new ManageBooksViewModel(_library, _dashboardNavigationStore, CreateAddBookViewModel);
         }
         private ManageMembersViewModel CreateManageMembersViewModel()
         {
             return new ManageMembersViewModel();
+        }
+        private AddBookViewModel CreateAddBookViewModel()
+        {
+            return new AddBookViewModel();
         }
 
         private void OnCurrentViewModelChanged()

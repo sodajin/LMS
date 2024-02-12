@@ -17,7 +17,7 @@ namespace LibraryManagementSystem.Commands
         private readonly UserList _users;
         private readonly NavigationStore _navigationStore;
         private readonly Func<ViewModelBase> _createMemberDashboardViewModel;
-        private readonly Func<ViewModelBase> _createAdminDashboardViewModel;
+        private readonly Func<User, ViewModelBase> _createAdminDashboardViewModel;
         private readonly Action<object> _changeAuthMessage;
         private readonly Predicate<object> _canExecute;
 
@@ -25,7 +25,7 @@ namespace LibraryManagementSystem.Commands
             LogInViewModel viewModel,
             NavigationStore navigationStore,
             Func<ViewModelBase> createMemberDashboardViewModel,
-            Func<ViewModelBase> createAdminDashboardViewModel,
+            Func<User, ViewModelBase> createAdminDashboardViewModel,
             UserList users,
             Action<object> changeAuthMessage,
             Predicate<object> canExecute = null
@@ -62,7 +62,7 @@ namespace LibraryManagementSystem.Commands
 
             if (credentials.AccountType == AccountType.Admin) 
             {
-                _navigationStore.CurrentViewModel = _createAdminDashboardViewModel();
+                _navigationStore.CurrentViewModel = _createAdminDashboardViewModel(credentials);
                 return;
             }
 

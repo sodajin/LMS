@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="sample1.View.AddBookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:sample1.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="900">
+    <Grid Margin="30,80">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Add Books" FontSize="50"/>
+        <Grid Grid.Row="1" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="ISBN" FontSize="30"/>
+            <TextBox Grid.Column="1"  />
+        </Grid>
+        <Grid Grid.Row="2" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Title" FontSize="30"/>
+            <TextBox Grid.Column="1"  />
+        </Grid>
+        <Grid Grid.Row="3" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Author(s)" FontSize="30"/>
+            <TextBox Grid.Column="1"  />
+        </Grid>
+        <Grid Grid.Row="4" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Publisher" FontSize="30"/>
+            <TextBox Grid.Column="1"  />
+        </Grid>
+        <Grid Grid.Row="5" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Date Published" FontSize="30"/>
+            <DatePicker Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="6" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Genre" FontSize="30"/>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding x}">
+                
+            </ComboBox>
+        </Grid>
+    </Grid>
+</UserControl>

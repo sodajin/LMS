@@ -155,11 +155,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\EditBookCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\LogOutCommand.cs" />
+    <Compile Include="Commands\NavigateAddBookViewCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\RelayCommandBase.cs" />
+    <Compile Include="Commands\SelectedBookCommand.cs" />
     <Compile Include="Model\UserList.cs" />
+    <Compile Include="ViewModel\AddBookViewModel.cs" />
+    <Compile Include="ViewModel\BookTableViewModel.cs" />
     <Compile Include="ViewModel\MemberDashboardViewModel.cs" />
+    <Compile Include="View\AddBookView.xaml.cs">
+      <DependentUpon>AddBookView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MemberDashboard.xaml.cs">
       <DependentUpon>MemberDashboard.xaml</DependentUpon>
     </Compile>
@@ -194,6 +203,10 @@
     <Compile Include="View\SearchBookView.xaml.cs">
       <DependentUpon>SearchBookView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MemberDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
