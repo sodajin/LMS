@@ -15,8 +15,7 @@
         >
 
     <Grid>
-        <!-- "<Frame Source="/View/LogInView.xaml"/> -->
-
+        
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:LogInViewModel}">
                 <views:LogInView/>

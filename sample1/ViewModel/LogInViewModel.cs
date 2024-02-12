@@ -79,7 +79,7 @@ namespace LibraryManagementSystem.ViewModel
         {
             _navigationStore = navigationStore;
             _createAdminDashboardViewModel = createAdminDashboardViewModel;
-            LogInButton = new LogInCommand(this, this.InvalidCredentials, _navigationStore, _createAdminDashboardViewModel);
+            LogInButton = new LogInCommand(this, _navigationStore, _createAdminDashboardViewModel);
         }
     }
 }
