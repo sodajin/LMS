@@ -40,7 +40,7 @@ namespace sample1
 
         private AdminDashboardViewModel CreateAdminDashboardViewModel() 
         {
-            return new AdminDashboardViewModel();
+            return new AdminDashboardViewModel(_navigationStore, CreateLogInViewModel);
         }
     }
 }
