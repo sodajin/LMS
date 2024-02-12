@@ -6,7 +6,101 @@
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900">
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="SearchBookView" />
+    <UserControl.Resources>
+        <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="#b6b6b6" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Padding" Value="0, 5" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,60,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Margin="20" Padding="20" FontSize="15"/>
+            <Border Grid.Column="1" Margin="20" Background="#8c52ff" >
+                <Button Background="{x:Null}" Foreground="White" FontSize="30" Command="{Binding SearchBooksCommand}">
+                    Search
+                </Button>
+            </Border>
+        </Grid>
+        <ListView x:Name="lsvClasses" Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" SelectionMode="Single" ItemsSource="{Binding BooksTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="#dad9d7" />
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="BorderBrush" Value="#BAB9B6" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListViewItem/>
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
+                    <GridViewColumn Header="Title" Width="250">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Komi Can't Communicate (Volume 1)" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Author" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Tomohito Oda" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Genre" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Arts" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Year Published" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="2016" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Status" Width="110">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Available" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>
