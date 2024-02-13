@@ -1,4 +1,5 @@
-﻿using LibraryManagementSystem.Model;
+﻿using LibraryManagementSystem.Commands;
+using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace LibraryManagementSystem.ViewModel
 {
@@ -18,7 +20,9 @@ namespace LibraryManagementSystem.ViewModel
 
         public IEnumerable<MemberTableViewModel> MemberTable => _memberTable;
 
-        public ManageMembersViewModel(UserList userList, NavigationStore dashboardNavigationStore)
+        public ICommand AddMemberCommand { get; }
+
+        public ManageMembersViewModel(UserList userList, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createAddMemberViewModel)
         {
             _userList = userList;
             _dashboardNavigationStore = dashboardNavigationStore;
@@ -31,6 +35,8 @@ namespace LibraryManagementSystem.ViewModel
             {
                 _memberTable.Add(new MemberTableViewModel(book_enumerate.Current));
             }
+
+            AddMemberCommand = new NavigateCommand(_dashboardNavigationStore, createAddMemberViewModel);
         }
     }
 }

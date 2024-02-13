@@ -59,7 +59,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ManageMembersViewModel CreateManageMembersViewModel()
         {
-            return new ManageMembersViewModel(_userList, _dashboardNavigationStore);
+            return new ManageMembersViewModel(_userList, _dashboardNavigationStore, CreateAddMemberViewModel);
         }
         private AddBookViewModel CreateAddBookViewModel()
         {
@@ -72,6 +72,11 @@ namespace LibraryManagementSystem.ViewModel
         private BorrowedBooksViewModel CreateBorrowedBooksViewModel()
         {
             return new BorrowedBooksViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel);
+        }
+
+        private AddMemberViewModel CreateAddMemberViewModel()
+        {
+            return new AddMemberViewModel(_userList, _dashboardNavigationStore, CreateManageMembersViewModel);
         }
 
         private void OnCurrentViewModelChanged()

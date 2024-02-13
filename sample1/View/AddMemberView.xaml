@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Genre" FontSize="30"/>
+            <TextBlock Grid.Column="0" Text="Password" FontSize="30"/>
             <TextBox Grid.Column="1"  Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="7">

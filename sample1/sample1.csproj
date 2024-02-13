@@ -154,6 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddMemberCommand.cs" />
     <Compile Include="Commands\EditBookCommand.cs" />
     <Compile Include="Commands\AddBookCommand.cs" />
     <Compile Include="Commands\DiscardCommand.cs" />
@@ -319,6 +320,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="ViewModel\AddMemberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
