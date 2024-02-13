@@ -156,7 +156,7 @@
                         
                         <!-- Login button -->
                         <StackPanel Margin="0,20,0,0" Width="224" Height="37">
-                            <Button x:Name="logInBtn" Style="{StaticResource PrimaryBtn}" Content="LOG IN" Click="LoginButton_Click" Height="36" FontSize="16" Command="{Binding LogInButton}"/>
+                            <Button x:Name="logInBtn" Style="{StaticResource LoginBtn}" Content="LOG IN" Click="LoginButton_Click" Height="36" FontSize="16" Command="{Binding LogInButton}"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>

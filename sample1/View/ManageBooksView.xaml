@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900">
@@ -85,23 +86,23 @@
         </ListView>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Margin="20" Background="#8c52ff">
-                <Button Background="{x:Null}" Foreground="White" Padding="20,0" FontSize="30" Command="{Binding AddBookCommand}">
-                    Add Book
+            <Border Grid.Column="0" Margin="20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddBookCommand}">
+                    ADD BOOK
                 </Button>
             </Border>
-            <Border Grid.Column="1" Margin="20" Background="#8c52ff">
-                <Button Background="{x:Null}" Foreground="White" Padding="20,0" FontSize="30" Command="{Binding EditBookCommand}">
-                    Edit Book
+            <Border Grid.Column="1" Margin="20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding EditBookCommand}">
+                    EDIT BOOK
                 </Button>
             </Border>
-            <Border Grid.Column="2" Margin="20" Background="#8c52ff" HorizontalAlignment="Right">
-                <Button Background="{x:Null}" Foreground="White" Padding="20,0" FontSize="30" Command="{Binding ViewBorrowedBooksCommand}">
-                    View Borrowed Book
+            <Border Grid.Column="2" Margin="130,20,0,20" HorizontalAlignment="Left" Width="350">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding ViewBorrowedBooksCommand}">
+                    VIEW BORROWED BOOKS
                 </Button>
             </Border>
         </Grid>

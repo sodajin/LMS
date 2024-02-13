@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900">
@@ -11,6 +12,7 @@
             <Setter Property="Background" Value="#b6b6b6" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="Padding" Value="0, 5" />
             <Setter Property="BorderBrush" Value="{x:Null}" />
         </Style>
@@ -25,10 +27,16 @@
                 <ColumnDefinition Width="700"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="20" Padding="20" FontSize="15"/>
-            <Border Grid.Column="1" Margin="20" Background="#8c52ff" >
-                <Button Background="{x:Null}" Foreground="White" FontSize="30" Command="{Binding SearchBooksCommand}">
-                    Search
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBox Margin="20" Padding="20" FontSize="15" Width="660"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="638,0,0,0" Width="62" VerticalAlignment="Center" Height="35">
+                <Icons:PackIconMaterial Kind="Magnify" Foreground="Gray" Height="31" Width="30" />
+            </StackPanel>
+
+            <Border Grid.Column="1" Margin="20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBooksCommand}">
+                    SEARCH
                 </Button>
             </Border>
         </Grid>
