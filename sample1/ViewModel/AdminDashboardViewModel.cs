@@ -61,7 +61,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private AddBookViewModel CreateAddBookViewModel()
         {
-            return new AddBookViewModel();
+            return new AddBookViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel);
         }
 
         private void OnCurrentViewModelChanged()
