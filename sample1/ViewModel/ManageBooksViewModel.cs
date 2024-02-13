@@ -31,7 +31,7 @@ namespace LibraryManagementSystem.ViewModel
             {
                 _selectIndex = value;
                 OnPropertyChanged(nameof(_selectIndex));
-                EditBookCommand = new EditBookCommand(_selectIndex, _books, _dashboardNavigationStore);
+                EditBookCommand = new SelectEditBookCommand(_selectIndex, _books, _dashboardNavigationStore);
                 OnPropertyChanged(nameof(EditBookCommand)); 
             }
         }
@@ -54,7 +54,7 @@ namespace LibraryManagementSystem.ViewModel
             }
 
             AddBookCommand = new NavigateCommand(_dashboardNavigationStore, createAddBookViewModel);
-            EditBookCommand = new EditBookCommand(SelectIndex, _books, _dashboardNavigationStore);
+            EditBookCommand = new SelectEditBookCommand(SelectIndex, _books, _dashboardNavigationStore);
         }
 
     }
