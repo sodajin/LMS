@@ -1,21 +1,24 @@
-﻿using System;
+﻿using LibraryManagementSystem.Commands;
+using LibraryManagementSystem.Model;
+using LibraryManagementSystem.Store;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using LibraryManagementSystem.Commands;
-using LibraryManagementSystem.Model;
-using LibraryManagementSystem.Store;
 
 namespace LibraryManagementSystem.ViewModel
 {
-    public class AddBookViewModel : ViewModelBase
+    public class EditBookViewModel : ViewModelBase
     {
         private readonly Library _library;
+        private readonly int _index;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<ViewModelBase> _createManageBookViewModel;
+
+        private readonly Book _bookToEdit;
 
         private ulong _ISBN;
         public ulong ISBN
@@ -29,7 +32,7 @@ namespace LibraryManagementSystem.ViewModel
         }
 
         private string _title;
-        public string Title 
+        public string Title
         {
             get => _title;
             set
@@ -62,7 +65,7 @@ namespace LibraryManagementSystem.ViewModel
         }
 
         private DateTime _datePublished;
-        public DateTime DatePublished 
+        public DateTime DatePublished
         {
             get => _datePublished;
             set
@@ -98,15 +101,28 @@ namespace LibraryManagementSystem.ViewModel
 
         public ObservableCollection<BookStatus> BookStatuses => new ObservableCollection<BookStatus>(Enum.GetValues(typeof(BookStatus)).Cast<BookStatus>());
 
-        public ICommand AddBookCommand { get; set; }
+        public ICommand EditBookCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public AddBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createManageBookViewModel)
+        public EditBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createManageBookViewModel, int index)
         {
             _library = library;
+            _index = index;
             _dashboardNavigationStore = dashboardNavigationStore;
             _createManageBookViewModel = createManageBookViewModel;
-            AddBookCommand = new AddBookCommand(this, _library, _dashboardNavigationStore, _createManageBookViewModel);
+
+            _bookToEdit = _library.GetBookFromElement(index);
+
+            _ISBN = _bookToEdit.ISBN;
+            _title = _bookToEdit.Title;
+            _author = _bookToEdit.Author;
+            _publisher = _bookToEdit.Publisher;
+            _datePublished = _bookToEdit.PublishedDate;
+            _genre = _bookToEdit.Genre;
+            _availability = _bookToEdit.Status;
+
+            EditBookCommand = new EditBookCommand(this, _library, _dashboardNavigationStore, _createManageBookViewModel, _index);
             CancelCommand = new DiscardCommand(_dashboardNavigationStore, _createManageBookViewModel);
         }
+
     }
 }

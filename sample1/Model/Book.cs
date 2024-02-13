@@ -56,5 +56,12 @@ namespace LibraryManagementSystem.Model
         {
             return this.Title;
         }
+
+        public bool Match(string searchTest)
+        {
+            if (this.Title.ToLower().Contains(searchTest.ToLower()) ||
+                this.Author.ToLower().Contains(searchTest.ToLower())) return true;
+            return false;
+        }
     }
 }

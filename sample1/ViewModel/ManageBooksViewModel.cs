@@ -19,6 +19,7 @@ namespace LibraryManagementSystem.ViewModel
         private List<Book> _books => _library.GetBooks();
         private readonly ObservableCollection<BookTableViewModel> _bookTable;
         private readonly NavigationStore _dashboardNavigationStore;
+        private readonly Func<int, ViewModelBase> _createEditBookViewModel;
 
         public IEnumerable<BookTableViewModel> BookTable => _bookTable;
 
@@ -31,7 +32,7 @@ namespace LibraryManagementSystem.ViewModel
             {
                 _selectIndex = value;
                 OnPropertyChanged(nameof(_selectIndex));
-                EditBookCommand = new SelectEditBookCommand(_selectIndex, _books, _dashboardNavigationStore);
+                EditBookCommand = new SelectEditBookCommand(_selectIndex, _books, _dashboardNavigationStore, _createEditBookViewModel);
                 OnPropertyChanged(nameof(EditBookCommand)); 
             }
         }
@@ -40,10 +41,16 @@ namespace LibraryManagementSystem.ViewModel
         public ICommand EditBookCommand { get; set;  }
         public ICommand ViewBorrowedBooksCommand { get; }
 
-        public ManageBooksViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createAddBookViewModel)
-        {
+        public ManageBooksViewModel(
+            Library library, 
+            NavigationStore dashboardNavigationStore, 
+            Func<ViewModelBase> createAddBookViewModel, 
+            Func<int, ViewModelBase> createEditBookViewModel, 
+            Func<ViewModelBase> createBorrowedBooksViewModel
+        ) {
             _library = library;
             _dashboardNavigationStore = dashboardNavigationStore;
+            _createEditBookViewModel = createEditBookViewModel;
             _bookTable = new ObservableCollection<BookTableViewModel>();
             IEnumerable<Book> IBookEnumerable = _books;
             IEnumerator<Book> book_enumerate = IBookEnumerable.GetEnumerator();
@@ -54,7 +61,8 @@ namespace LibraryManagementSystem.ViewModel
             }
 
             AddBookCommand = new NavigateCommand(_dashboardNavigationStore, createAddBookViewModel);
-            EditBookCommand = new SelectEditBookCommand(SelectIndex, _books, _dashboardNavigationStore);
+            EditBookCommand = new SelectEditBookCommand(SelectIndex, _books, _dashboardNavigationStore, createEditBookViewModel);
+            ViewBorrowedBooksCommand = new NavigateCommand(_dashboardNavigationStore, createBorrowedBooksViewModel);
         }
 
     }

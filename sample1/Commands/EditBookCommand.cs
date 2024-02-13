@@ -11,23 +11,26 @@ using LibraryManagementSystem.ViewModel;
 
 namespace LibraryManagementSystem.Commands
 {
-    public class AddBookCommand : CommandBase
+    public class EditBookCommand : CommandBase
     {
-        private readonly AddBookViewModel _viewModel;
+        private readonly EditBookViewModel _viewModel;
         private readonly Library _library;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<ViewModelBase> _createManageBookViewModel;
+        private readonly int _index;
 
-        public AddBookCommand(
-            AddBookViewModel viewModel, 
+        public EditBookCommand(
+            EditBookViewModel viewModel, 
             Library library, 
             NavigationStore dashboardNavigationStore,
-            Func<ViewModelBase> createManageBookViewModel
+            Func<ViewModelBase> createManageBookViewModel,
+            int index
         ) {
             _viewModel = viewModel;
             _library = library;
             _dashboardNavigationStore = dashboardNavigationStore;
             _createManageBookViewModel = createManageBookViewModel;
+            _index = index;
         }
         public override void Execute(object parameter)
         {
@@ -37,7 +40,7 @@ namespace LibraryManagementSystem.Commands
                 return;
             }
 
-            Book newBook = new Book(
+            Book modifiedBook = new Book(
                 _viewModel.ISBN,
                 _viewModel.Title,
                 _viewModel.Author,
@@ -46,12 +49,13 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Genre,
                 _viewModel.Availability
             );
-            _library.AddBook(newBook);
 
-            MessageBox.Show("Add Book Complete");
+
+            _library.ReplaceBook(modifiedBook, _index);
+
+            MessageBox.Show("Edit Book Complete");
             _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel();
         }
-
         public bool CheckData()
         {
             if (_viewModel.ISBN == 0 ||

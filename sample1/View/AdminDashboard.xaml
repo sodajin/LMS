@@ -139,6 +139,12 @@
                     <DataTemplate DataType="{x:Type vms:AddBookViewModel}">
                         <views:AddBookView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:EditBookViewModel}">
+                        <views:EditBookView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:BorrowedBooksViewModel}">
+                        <views:BorrowedBooksView/>
+                    </DataTemplate>
                 </Border.Resources>
 
                 <ContentControl Content="{Binding CurrentDashboardViewModel}"/>

@@ -17,17 +17,21 @@ namespace LibraryManagementSystem.Model
         public User User { get; }
         public Book Book { get; }
         public DateTime DateBorrowed { get; }
+        public DateTime DateReturned { get; }
         public Status Status { get; }   
         public BorrowedBook(
             User user, 
             Book book, 
             Status status,
-            DateTime dateBorrowed
+            DateTime dateBorrowed,
+            DateTime dateReturned
         ) {
             this.User = user;
             this.Book = book;
             this.Status = status;
             this.DateBorrowed = dateBorrowed;
+            this.DateReturned = dateReturned;
         }
+
     }
 }

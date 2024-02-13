@@ -36,16 +36,16 @@ namespace LibraryManagementSystem.ViewModel
             _dashboardNavigationStore = new NavigationStore();
             _dashboardNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            SearchBooksCommand = new NavigateCommand(_dashboardNavigationStore, CreateSearchBooksViewModel);
+            SearchBooksCommand = new NavigateSearchBooksCommand(_dashboardNavigationStore, new List<Book>(), "", CreateSearchBooksViewModel);
             RequestsCommand = new NavigateCommand(_dashboardNavigationStore, CreateRequestsViewModel);
             ManageBooksCommand = new NavigateCommand(_dashboardNavigationStore, CreateManageBooksViewModel);
             ManageMembersCommand = new NavigateCommand(_dashboardNavigationStore, CreateManageMembersViewModel);
             LogOutCommand = new LogOutCommand(_navigationStore, createLogInViewModel);
         }
 
-        private SearchBooksViewModel CreateSearchBooksViewModel()
+        private SearchBooksViewModel CreateSearchBooksViewModel(List<Book> results, string searchText)
         {
-            return new SearchBooksViewModel(_library);
+            return new SearchBooksViewModel(_library, results, searchText, _dashboardNavigationStore, CreateSearchBooksViewModel);
         }
         private RequestsViewModel CreateRequestsViewModel()
         {
@@ -53,7 +53,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ManageBooksViewModel CreateManageBooksViewModel()
         {
-            return new ManageBooksViewModel(_library, _dashboardNavigationStore, CreateAddBookViewModel);
+            return new ManageBooksViewModel(_library, _dashboardNavigationStore, CreateAddBookViewModel, CreateEditBookViewModel, CreateBorrowedBooksViewModel);
         }
         private ManageMembersViewModel CreateManageMembersViewModel()
         {
@@ -62,6 +62,14 @@ namespace LibraryManagementSystem.ViewModel
         private AddBookViewModel CreateAddBookViewModel()
         {
             return new AddBookViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel);
+        }
+        private EditBookViewModel CreateEditBookViewModel(int index)
+        {
+            return new EditBookViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel, index);
+        }
+        private BorrowedBooksViewModel CreateBorrowedBooksViewModel()
+        {
+            return new BorrowedBooksViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel);
         }
 
         private void OnCurrentViewModelChanged()

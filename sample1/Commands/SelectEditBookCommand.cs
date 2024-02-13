@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
+using LibraryManagementSystem.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,12 +16,14 @@ namespace LibraryManagementSystem.Commands
         public int _index;
         private readonly List<Book> _books;
         private readonly NavigationStore _navigationStore;
-        public SelectEditBookCommand(int index, List<Book> books, NavigationStore navigationStore) 
+        private readonly Func<int, ViewModelBase> _createEditBookViewModel;
+        public SelectEditBookCommand(int index, List<Book> books, NavigationStore navigationStore, Func<int, ViewModelBase> createEditBookViewModel) 
         {
             _index = index;
             Trace.WriteLine($"In Edit Book Command: {_index}");
             _books = books;
             _navigationStore = navigationStore;
+            _createEditBookViewModel = createEditBookViewModel;
         }
         public override void Execute(object parameter)
         {
@@ -38,7 +41,7 @@ namespace LibraryManagementSystem.Commands
                 return;
             }
 
-            // TODO: Switch to Edit Book View Model
+            _navigationStore.CurrentViewModel = _createEditBookViewModel(_index);
         }
     }
 }

@@ -46,5 +46,15 @@ namespace LibraryManagementSystem.Model
                 this.Password == password) return true;
             return false;
         }
+
+        public string GetID()
+        {
+            return this.ID;
+        }
+
+        public string GetFullName()
+        {
+            return $"{FirstName} {MiddleName} {LastName}";
+        }
     }
 }
