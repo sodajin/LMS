@@ -154,6 +154,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\BookView.xaml.cs">
+      <DependentUpon>BookView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\EditBookCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
@@ -203,6 +206,10 @@
     <Compile Include="View\SearchBookView.xaml.cs">
       <DependentUpon>SearchBookView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\BookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddBookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
