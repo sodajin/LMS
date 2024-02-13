@@ -10,8 +10,10 @@ namespace LibraryManagementSystem.Model
     {
         public List<Book> Books { get; }
         public List<BorrowedBook> BorrowedBooks { get; }
+        public ulong CurrentId { get; set; }
         public Library() 
         {
+            CurrentId = 0;
             Books = new List<Book>();
             BorrowedBooks = new List<BorrowedBook>();
         }
@@ -35,16 +37,31 @@ namespace LibraryManagementSystem.Model
         {
             Books[index] = newBook;
         }
-        public List<Book> SearchBook(string searchText)
+        public List<Book> SearchBookByString(string searchText)
         {
-            List<Book> results = new List<Book>();
-
-            foreach (Book book in Books) 
-            {
-                if (book.Match(searchText)) results.Add(book);
-            }
-            
-            return results;
+            return Books.Where(b => b.Match(searchText)).ToList();
+        }
+        public List<Book> SearchBookByGenre(Genre genre)
+        {
+            return Books.Where(b => b.Genre == genre).ToList();
+        }
+        public void BorrowBook(int index, User user, DateTime dateBorrowed)
+        {
+            Books[index].Status = BookStatus.Unavailable;
+            BorrowedBooks.Add(new BorrowedBook(user, Books[index], Status.Borrowed, dateBorrowed));
+        }
+        public void ReturnBook(int index, DateTime dateReturned)
+        {
+            BorrowedBook book = BorrowedBooks[index];
+            book.Status = Status.Returned;
+            book.SetReturnDate(dateReturned);
+            ulong getID = book.Book.ID;
+            Books.FirstOrDefault(b => b.ID == getID).Status = BookStatus.Available;
+        }
+        public ulong GetCurrentIDAndIncrement()
+        {
+            CurrentId++;
+            return CurrentId;
         }
     }
 }

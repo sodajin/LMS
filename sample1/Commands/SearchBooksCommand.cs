@@ -27,7 +27,7 @@ namespace LibraryManagementSystem.Commands
         }
         public override void Execute(object parameter)
         {
-            List<Book> results = _books.SearchBook(_searchText);
+            List<Book> results = _books.SearchBookByString(_searchText);
             _dashboardNavigationStore.CurrentViewModel = _createSearchBookViewModel(results, _searchText);
         }
     }

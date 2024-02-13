@@ -162,6 +162,10 @@
     <Compile Include="ViewModel\BorrowedBooksTableViewModel.cs" />
     <Compile Include="ViewModel\BorrowedBooksViewModel.cs" />
     <Compile Include="ViewModel\EditBookViewModel.cs" />
+    <Compile Include="ViewModel\MemberTableViewModel.cs" />
+    <Compile Include="View\AddMemberView.xaml.cs">
+      <DependentUpon>AddMemberView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
     </Compile>
@@ -219,6 +223,10 @@
     <Compile Include="View\SearchBookView.xaml.cs">
       <DependentUpon>SearchBookView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddMemberView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\BookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

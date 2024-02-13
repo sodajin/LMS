@@ -33,5 +33,10 @@ namespace LibraryManagementSystem.Model
 
             return null;
         }
+
+        public List<User> GetSimpleUsers()
+        {
+            return Users.Where(u => u.AccountType == AccountType.Simple).ToList();
+        }
     }
 }

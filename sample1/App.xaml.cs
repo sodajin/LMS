@@ -27,6 +27,7 @@ namespace sample1
             _users = new UserList();
 
             _library.AddBook(new Book(
+                _library.GetCurrentIDAndIncrement(),
                 9784091273437,
                 "Kimetsu no Yaiba, Vol. 1",
                 "Koyoharu Gotouge",
@@ -37,6 +38,7 @@ namespace sample1
                 )
             );
             _library.AddBook(new Book(
+                _library.GetCurrentIDAndIncrement(),
                 9781974700523,
                 "Komi-san Can't Communicate",
                 "Tomohito Oda",
@@ -54,6 +56,7 @@ namespace sample1
                 "Lovino",
                 "lezzthanthree",
                 "password",
+                100,
                 AccountType.Admin
                 ));
             _users.SignUp(new User(
@@ -63,6 +66,7 @@ namespace sample1
                 "Macapanas",
                 "a",
                 "a",
+                100,
                 AccountType.Admin
                 ));
             _users.SignUp(new User(
@@ -72,8 +76,12 @@ namespace sample1
                 "Pop",
                 "smiliep",
                 "password",
+                100,
                 AccountType.Simple
                 ));
+
+            _library.BorrowBook(0, _users.Users[0], new DateTime(2023, 2, 14));
+            _library.ReturnBook(0, DateTime.Today);
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -99,7 +107,7 @@ namespace sample1
 
         private AdminDashboardViewModel CreateAdminDashboardViewModel(User user) 
         {
-            return new AdminDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library);
+            return new AdminDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library, _users);
         }
     }
 }

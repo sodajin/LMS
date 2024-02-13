@@ -20,6 +20,7 @@ namespace LibraryManagementSystem.Model
         public string LastName { get; }
         public string Username { get; }
         public string Password { get; }
+        public int Reputation { get; }
         public AccountType AccountType { get; }
         public User(
             string id,
@@ -28,6 +29,7 @@ namespace LibraryManagementSystem.Model
             string lastName,
             string username,
             string password,
+            int reputation,
             AccountType accountType
         ) {
             this.ID = id;
@@ -36,6 +38,7 @@ namespace LibraryManagementSystem.Model
             this.LastName = lastName;
             this.Username = username;
             this.Password = password;
+            this.Reputation = reputation;
             this.AccountType = accountType;
         }
 

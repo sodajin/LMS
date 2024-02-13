@@ -27,6 +27,7 @@ namespace LibraryManagementSystem.Model
     }
     public class Book
     {
+        public ulong ID { get; set;  }
         public ulong ISBN { get; }
         public string Title { get; }
         public string Author { get; }
@@ -35,6 +36,7 @@ namespace LibraryManagementSystem.Model
         public Genre Genre { get; }
         public BookStatus Status { get; set; }
         public Book (
+            ulong ID,
             ulong isbn,
             string title,
             string author,
@@ -43,6 +45,7 @@ namespace LibraryManagementSystem.Model
             Genre genre,
             BookStatus status
         ) {
+            this.ID = ID;
             this.ISBN = isbn;
             this.Title = title;
             this.Author = author;

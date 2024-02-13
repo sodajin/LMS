@@ -41,6 +41,7 @@ namespace LibraryManagementSystem.Commands
             }
 
             Book modifiedBook = new Book(
+                _library.GetBookFromElement(_index).ID,
                 _viewModel.ISBN,
                 _viewModel.Title,
                 _viewModel.Author,
@@ -49,7 +50,6 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Genre,
                 _viewModel.Availability
             );
-
 
             _library.ReplaceBook(modifiedBook, _index);
 

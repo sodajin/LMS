@@ -10,11 +10,12 @@ namespace LibraryManagementSystem.ViewModel
     public class BorrowedBooksTableViewModel : ViewModelBase
     {
         public readonly BorrowedBook _borrowedBooks;
-        public string MemberID => _borrowedBooks.User.GetID();
+        public string MemberID => _borrowedBooks.User.ID;
         public string MemberFullName => _borrowedBooks.User.GetFullName();
         public string BookTitle => _borrowedBooks.Book.Title;
-        public DateTime DateBorrowed => _borrowedBooks.DateBorrowed;
-        public DateTime DateReturned => _borrowedBooks.DateReturned;
+        public string DateBorrowed => _borrowedBooks.DateBorrowed.ToString("d");
+        public string DateDue => _borrowedBooks.DateBorrowed.AddDays(3).ToString("d");
+        public string DateReturned => _borrowedBooks.DateReturned.Equals(new DateTime(1,1,1)) ? "" : _borrowedBooks.DateReturned.ToString("d");
 
         public BorrowedBooksTableViewModel(BorrowedBook borrowedBooks) 
         {

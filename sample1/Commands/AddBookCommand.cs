@@ -38,6 +38,7 @@ namespace LibraryManagementSystem.Commands
             }
 
             Book newBook = new Book(
+                _library.GetCurrentIDAndIncrement(),
                 _viewModel.ISBN,
                 _viewModel.Title,
                 _viewModel.Author,

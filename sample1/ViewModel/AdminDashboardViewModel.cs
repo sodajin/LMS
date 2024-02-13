@@ -15,6 +15,7 @@ namespace LibraryManagementSystem.ViewModel
 
         private readonly NavigationStore _navigationStore;
         private readonly Library _library;
+        private readonly  UserList _userList;
         private readonly User _user;
 
         private NavigationStore _dashboardNavigationStore;
@@ -28,11 +29,12 @@ namespace LibraryManagementSystem.ViewModel
 
         public string Name => _user.FirstName;
 
-        public AdminDashboardViewModel(User user, NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library)
+        public AdminDashboardViewModel(User user, NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library, UserList userList)
         {
             _user = user;
             _navigationStore = navigationStore;
             _library = library;
+            _userList = userList;
             _dashboardNavigationStore = new NavigationStore();
             _dashboardNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
@@ -57,7 +59,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ManageMembersViewModel CreateManageMembersViewModel()
         {
-            return new ManageMembersViewModel();
+            return new ManageMembersViewModel(_userList, _dashboardNavigationStore);
         }
         private AddBookViewModel CreateAddBookViewModel()
         {
