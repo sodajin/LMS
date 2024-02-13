@@ -10,12 +10,12 @@ using System.Windows;
 
 namespace LibraryManagementSystem.Commands
 {
-    public class EditBookCommand : CommandBase
+    public class SelectEditBookCommand : CommandBase
     {
         public int _index;
         private readonly List<Book> _books;
         private readonly NavigationStore _navigationStore;
-        public EditBookCommand(int index, List<Book> books, NavigationStore navigationStore) 
+        public SelectEditBookCommand(int index, List<Book> books, NavigationStore navigationStore) 
         {
             _index = index;
             Trace.WriteLine($"In Edit Book Command: {_index}");
@@ -24,7 +24,6 @@ namespace LibraryManagementSystem.Commands
         }
         public override void Execute(object parameter)
         {
-            Trace.WriteLine($"Button Clicked: {_index}");
 
             if (_index < 0)
             {

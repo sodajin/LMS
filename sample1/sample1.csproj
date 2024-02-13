@@ -156,7 +156,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AddBookCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\EditBookCommand.cs" />
+    <Compile Include="Commands\SelectEditBookCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\LogOutCommand.cs" />
     <Compile Include="Commands\NavigateAddBookViewCommand.cs" />
