@@ -3,95 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="900">
-    <Grid Margin="30,80">
+             d:DesignHeight="760" d:DesignWidth="1200">
+
+    <Grid Background="White">
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="550"/>
+            <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Add Books" FontSize="50"/>
-        <Grid Grid.Row="1" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="ISBN" FontSize="30" />
-            <TextBox Grid.Column="1" Text="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Border CornerRadius="30" Opacity=".97">
+                <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#10002b" Offset="0"/>
+                        <GradientStop Color="#240046" Offset=".2"/>
+                            <GradientStop Color="#212529" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#10002b" Offset="0"/>
+                        <GradientStop Color="#240046" Offset=".2"/>
+                            <GradientStop Color="#212529" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+               
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--HEADLINE-->
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,10,0" Text="ADD BOOK" FontFamily="Helvetica" FontSize="36" FontWeight="Heavy" Foreground="Wheat" VerticalAlignment="Bottom"/>
+                            <Icons:PackIconMaterial Kind="BookPlusMultiple" VerticalAlignment="Center" Width="40" Height="40" Foreground="#f5bd1f" Margin="10,0,40,0"/>
+                        </StackPanel>
+                        
+                    </Grid>
+
+                    <!--ISBN-->
+                    <TextBlock Grid.Row="1" Margin="40,0" Text="ISBN" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}"/>
+                    
+                    <!--TITLE-->
+                    <TextBlock Grid.Row="2" Margin="40,0" Text="TITLE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                    
+                    <!--AUTHOR-->
+                    <TextBlock Grid.Row="3" Margin="40,0" Text="AUTHOR(S)" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!--PUBLISHER-->
+                    <TextBlock Grid.Row="4" Margin="40,0" Text="PUBLISHER" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!--DATE-->
+                    <TextBlock Grid.Row="5" Margin="40,0,40,20" Text="DATE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+                    <TextBlock Grid.Row="5" Margin="40,20,40,0" Text="PUBLISHED" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <DatePicker Grid.Row="5" Grid.Column="1" Margin="11,10,41,10" Background="Transparent" BorderBrush="Transparent" Foreground="#212529" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" SelectedDate="{Binding DatePublished, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!--GENRE-->
+                    <TextBlock Grid.Row="6" Margin="40,0" Text="GENRE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <ComboBox Grid.Row="6" Grid.Column="1" Margin="15,14,70,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <!--STATUS-->
+                    <TextBlock Grid.Row="7" Margin="40,0" Text="STATUS" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
+
+                    <ComboBox Grid.Row="7" Grid.Column="1" Margin="15,15,70,14" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding BookStatuses, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Availability, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Grid>
+
+            </Border>
+
         </Grid>
-        <Grid Grid.Row="2" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Title" FontSize="30"/>
-            <TextBox Grid.Column="1" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
-        <Grid Grid.Row="3" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Author(s)" FontSize="30"/>
-            <TextBox Grid.Column="1" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
-        <Grid Grid.Row="4" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Publisher" FontSize="30"/>
-            <TextBox Grid.Column="1"  Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid Grid.Row="5" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Date Published" FontSize="30"/>
-            <DatePicker Grid.Column="1" SelectedDate="{Binding DatePublished, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid Grid.Row="6" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Genre" FontSize="30"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--ADD & CANCEL BUTTONS-->
+        <Grid Grid.Row="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="200,30,180,30">
+                <Button Style="{StaticResource BasicBtn}" Content="OK" Width="100" Margin="0,0,20,0"/>
+                <Button Style="{StaticResource BasicBtn}" Content="CANCEL" Width="120"/>
+            </StackPanel>
             
         </Grid>
-        <Grid Grid.Row="7" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Availability" FontSize="30"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding BookStatuses, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Availability, UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
-        <Grid Grid.Row="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Margin="10" Background="#8c52ff" >
-                <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="10,10" Command="{Binding AddBookCommand}">
-                    Add Book
-                </Button>
-            </Border>
-            <Border Grid.Column="1" Margin="10" Background="#8c52ff" >
-                <Button Background="{x:Null}" Foreground="White" FontSize="30" Padding="10,10" Command="{Binding CancelCommand}">
-                    Cancel
-                </Button>
-            </Border>
-        </Grid>
+
     </Grid>
 </UserControl>

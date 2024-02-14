@@ -8,7 +8,7 @@
         xmlns:views="clr-namespace:sample1.View"
         xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="760" Width="1200"
+        Title="MainWindow" Height="760" Width="1500"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"

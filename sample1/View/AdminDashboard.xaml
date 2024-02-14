@@ -8,7 +8,7 @@
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="760" d:DesignWidth="1200">
+             d:DesignHeight="760" d:DesignWidth="1500">
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -52,34 +52,25 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height="70"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="70"/>
-                        <RowDefinition Height="190"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
 
-                    <RadioButton Grid.Row="0" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding SearchBooksCommand}">
-                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
-                            <Icons:PackIconMaterial Kind="BookSearch" Style="{StaticResource DashboardBtnIcon}" />
-                            <TextBlock Text="Search Books" Style="{StaticResource DashboardBtnTxt}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding RequestsCommand}">
+                    <RadioButton Grid.Row="0" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding RequestsCommand}">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="CheckboxBlankBadge" Style="{StaticResource DashboardBtnIcon}" />
                             <TextBlock Text="Requests" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Grid.Row="4" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding ManageBooksCommand}">
+                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding ManageBooksCommand}">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="Bookshelf" Style="{StaticResource DashboardBtnIcon}" />
                             <TextBlock Text="Manage Books" Style="{StaticResource DashboardBtnTxt}"/>
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Grid.Row="6" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding ManageMembersCommand}">
+                    <RadioButton Grid.Row="4" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding ManageMembersCommand}">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="AccountGroupOutline" Style="{StaticResource DashboardBtnIcon}"/>
                             <TextBlock Text="Manage Members" Style="{StaticResource DashboardBtnTxt}"/>

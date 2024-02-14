@@ -330,17 +330,17 @@
     <Resource Include="Resources\DashboardBackground\IMG_10.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\LogInBackground\IMG-01.png" />
-    <Resource Include="Resources\LogInBackground\IMG-02.png" />
-    <Resource Include="Resources\LogInBackground\IMG-03.png" />
-    <Resource Include="Resources\LogInBackground\IMG-04.png" />
-    <Resource Include="Resources\LogInBackground\IMG-05.png" />
-    <Resource Include="Resources\LogInBackground\IMG-06.png" />
-    <Resource Include="Resources\LogInBackground\IMG-07.png" />
-    <Resource Include="Resources\LogInBackground\IMG-08.png" />
+    <Resource Include="Resources\LOGO_01.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\LOGO_01.png" />
+    <Resource Include="Resources\LogInBackground\IMG_01.png" />
+    <Resource Include="Resources\LogInBackground\IMG_02.png" />
+    <Resource Include="Resources\LogInBackground\IMG_03.png" />
+    <Resource Include="Resources\LogInBackground\IMG_04.png" />
+    <Resource Include="Resources\LogInBackground\IMG_05.png" />
+    <Resource Include="Resources\LogInBackground\IMG_06.png" />
+    <Resource Include="Resources\LogInBackground\IMG_07.png" />
+    <Resource Include="Resources\LogInBackground\IMG_08.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

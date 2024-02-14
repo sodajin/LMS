@@ -6,7 +6,7 @@
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="900">
+             d:DesignHeight="750" d:DesignWidth="1200">
     <UserControl.Resources>
         <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Background" Value="#b6b6b6" />

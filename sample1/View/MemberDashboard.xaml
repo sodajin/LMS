@@ -6,7 +6,7 @@
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="760" d:DesignWidth="1200">
+             d:DesignHeight="760" d:DesignWidth="1500">
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
