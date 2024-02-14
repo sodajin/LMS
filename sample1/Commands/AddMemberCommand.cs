@@ -14,13 +14,13 @@ namespace LibraryManagementSystem.Commands
         private readonly AddMemberViewModel _viewModel;
         private readonly UserList _userList;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ViewModelBase> _createManageMemberViewModel;
+        private readonly Func<List<User>, string, ViewModelBase> _createManageMemberViewModel;
 
         public AddMemberCommand(
             AddMemberViewModel viewModel,
             UserList userList,
             NavigationStore dashboardNavigationStore,
-            Func<ViewModelBase> createManageMemberViewModel
+            Func<List<User>, string, ViewModelBase> createManageMemberViewModel
         ) {
             _viewModel = viewModel;
             _userList = userList;
@@ -40,7 +40,7 @@ namespace LibraryManagementSystem.Commands
             );
 
             _userList.SignUp( newUser );
-            _dashboardNavigationStore.CurrentViewModel = _createManageMemberViewModel();
+            _dashboardNavigationStore.CurrentViewModel = _createManageMemberViewModel(new List<User>(), "");
         }
     }
 }

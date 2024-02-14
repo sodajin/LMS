@@ -35,7 +35,7 @@
             </StackPanel>
 
             <Border Grid.Column="1" Margin="20">
-                <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBooksCommand}">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBorrowedBooksCommand}">
                     SEARCH
                 </Button>
             </Border>
@@ -99,15 +99,19 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Margin="20">
-                <Button Style="{DynamicResource BasicBtn}" Command="{Binding ReturnCommand}">
-                    RETURN
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding BackCommand}">
+                    BACK
                 </Button>
             </Border>
-            
+            <Border Grid.Column="1" Margin="20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding ReturnBookCommand}">
+                    RETURN BOOK
+                </Button>
+            </Border>
         </Grid>
 
     </Grid>

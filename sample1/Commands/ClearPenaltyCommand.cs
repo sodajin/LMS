@@ -11,7 +11,7 @@ using LibraryManagementSystem.ViewModel;
 
 namespace LibraryManagementSystem.Commands
 {
-    public class PenalizeCommand : CommandBase
+    public class ClearPenaltyCommand : CommandBase
     {
         private readonly ManageMembersViewModel _viewModel;
         private readonly UserList _userList;
@@ -19,7 +19,7 @@ namespace LibraryManagementSystem.Commands
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<User>, string, ViewModelBase> _createManageMembersViewModel;
 
-        public PenalizeCommand(ManageMembersViewModel viewModel, UserList userList, int index, NavigationStore dashboardNavigationStore, Func<List<User>, string, ViewModelBase> createManageMembersViewModel) 
+        public ClearPenaltyCommand(ManageMembersViewModel viewModel, UserList userList, int index, NavigationStore dashboardNavigationStore, Func<List<User>, string, ViewModelBase> createManageMembersViewModel) 
         {
             _viewModel = viewModel;
             _userList = userList;
@@ -31,21 +31,21 @@ namespace LibraryManagementSystem.Commands
         {
             if (_index < 0)
             {
-                MessageBox.Show("Please select a member on the table to penalize.", "No selected member", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please select a member on the table to clear their penalty.", "No selected member", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;     
             }
 
             User user = _userList.GetUserFromID(_viewModel.MemberTable.ElementAt(_index).MemberID);
-            if (user.Reputation <= 0)
+            if (user.Reputation >= 100)
             {
-                MessageBox.Show("No more reputation points to deduct.", "Low penalty warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Credit score on highest.", "High Credit Score", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Do you wish to penalize this user?", "Penalize User", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("Do you wish to clear penalties on this user?", "Clear Penalty", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No) { return; }
 
-            user.AddReputation(-20);
+            user.SetReputation(100);
 
             _dashboardNavigationStore.CurrentViewModel = _createManageMembersViewModel(new List<User>(), "");
         }

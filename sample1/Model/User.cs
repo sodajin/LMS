@@ -50,6 +50,14 @@ namespace LibraryManagementSystem.Model
             return false;
         }
 
+        public bool Match(string searchTest)
+        {
+            if (this.FirstName.ToLower().Contains(searchTest.ToLower()) ||
+                this.LastName.ToLower().Contains(searchTest.ToLower()) ||
+                this.MiddleName.ToLower().Contains(searchTest.ToLower())) return true;
+            return false;
+        }
+
         public string GetID()
         {
             return this.ID;
@@ -63,6 +71,10 @@ namespace LibraryManagementSystem.Model
         public void AddReputation(int reputation)
         {
             this.Reputation += reputation;
+        }
+        public void SetReputation(int reputation)
+        {
+            this.Reputation = reputation;
         }
     }
 }

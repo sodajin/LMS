@@ -84,12 +84,12 @@ namespace LibraryManagementSystem.ViewModel
 		public ICommand AddMemberCommand { get; }
 		public ICommand CancelCommand { get; }
 
-		public AddMemberViewModel(UserList userList, NavigationStore _dashboardNavigationStore, Func<ViewModelBase> createManageMemberViewModel) 
+		public AddMemberViewModel(UserList userList, NavigationStore dashboardNavigationStore, Func<List<User>, string, ViewModelBase> createManageMemberViewModel) 
         {
             _userList = userList;
-            _dashboardNavigationStore = _dashboardNavigationStore;
+            _dashboardNavigationStore = dashboardNavigationStore;
 			AddMemberCommand = new AddMemberCommand(this, _userList, _dashboardNavigationStore, createManageMemberViewModel);
 			CancelCommand = new DiscardCommand(_dashboardNavigationStore, createManageMemberViewModel);
-        }
+		}
     }
 }

@@ -15,7 +15,7 @@ namespace LibraryManagementSystem.ViewModel
     {
         private readonly Library _library;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ViewModelBase> _createManageBookViewModel;
+        private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
         private ulong _ISBN;
         public ulong ISBN
@@ -100,7 +100,7 @@ namespace LibraryManagementSystem.ViewModel
 
         public ICommand AddBookCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public AddBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createManageBookViewModel)
+        public AddBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createManageBookViewModel)
         {
             _library = library;
             _dashboardNavigationStore = dashboardNavigationStore;

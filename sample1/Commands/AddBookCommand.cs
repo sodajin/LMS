@@ -16,13 +16,13 @@ namespace LibraryManagementSystem.Commands
         private readonly AddBookViewModel _viewModel;
         private readonly Library _library;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ViewModelBase> _createManageBookViewModel;
+        private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
         public AddBookCommand(
             AddBookViewModel viewModel, 
             Library library, 
             NavigationStore dashboardNavigationStore,
-            Func<ViewModelBase> createManageBookViewModel
+            Func<List<Book>, string, ViewModelBase> createManageBookViewModel
         ) {
             _viewModel = viewModel;
             _library = library;
@@ -38,7 +38,7 @@ namespace LibraryManagementSystem.Commands
             }
 
             Book newBook = new Book(
-                _library.GetCurrentIDAndIncrement(),
+                _library.GetCurrentBookIDAndIncrement(),
                 _viewModel.ISBN,
                 _viewModel.Title,
                 _viewModel.Author,
@@ -50,7 +50,7 @@ namespace LibraryManagementSystem.Commands
             _library.AddBook(newBook);
 
             MessageBox.Show("Add Book Complete");
-            _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel();
+            _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel(new List<Book>(), "");
         }
 
         public bool CheckData()

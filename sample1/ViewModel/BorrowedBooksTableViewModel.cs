@@ -10,6 +10,7 @@ namespace LibraryManagementSystem.ViewModel
     public class BorrowedBooksTableViewModel : ViewModelBase
     {
         public readonly BorrowedBook _borrowedBooks;
+        public ulong ID => _borrowedBooks.ID;
         public string MemberID => _borrowedBooks.User.ID;
         public string MemberFullName => _borrowedBooks.User.GetFullName();
         public string BookTitle => _borrowedBooks.Book.Title;

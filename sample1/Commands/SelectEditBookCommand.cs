@@ -13,34 +13,34 @@ namespace LibraryManagementSystem.Commands
 {
     public class SelectEditBookCommand : CommandBase
     {
-        public int _index;
-        private readonly List<Book> _books;
+        public ulong _id;
+        private readonly Library _library;
         private readonly NavigationStore _navigationStore;
-        private readonly Func<int, ViewModelBase> _createEditBookViewModel;
-        public SelectEditBookCommand(int index, List<Book> books, NavigationStore navigationStore, Func<int, ViewModelBase> createEditBookViewModel) 
+        private readonly Func<ulong, ViewModelBase> _createEditBookViewModel;
+        public SelectEditBookCommand(ManageBooksViewModel viewModel, Library library, ulong ID, NavigationStore navigationStore, Func<ulong, ViewModelBase> createEditBookViewModel) 
         {
-            _index = index;
-            _books = books;
+            _library = library;
+            _id = ID;
             _navigationStore = navigationStore;
             _createEditBookViewModel = createEditBookViewModel;
         }
         public override void Execute(object parameter)
         {
 
-            if (_index < 0)
+            if (_id <= 0)
             {
-                MessageBox.Show($"Please select a book from the table. {_index}" , "No book selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Please select a book from the table." , "No book selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            Book book = _books.ElementAt(_index);
+            Book book = _library.GetBookFromID(_id);
             if (book.Status == BookStatus.Unavailable) 
             {
                 MessageBox.Show("Please select a book that is available.", "Invalid book selected", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            _navigationStore.CurrentViewModel = _createEditBookViewModel(_index);
+            _navigationStore.CurrentViewModel = _createEditBookViewModel(_id);
         }
     }
 }

@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vms="clr-namespace:LibraryManagementSystem.ViewModel"
+             xmlns:views="clr-namespace:sample1.View"
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
@@ -39,7 +41,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="WELCOME," Foreground="White" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Height="18" Margin="0,35,0,7" />
-                        <TextBlock Grid.Row="1" Text="USERNAME" Foreground="White" FontFamily="Helvetica" FontSize="20" FontWeight="Heavy" Height="18" Margin="0,0,0,42" />
+                        <TextBlock Grid.Row="1" Text="{Binding Name}" Foreground="White" FontFamily="Helvetica" FontSize="20" FontWeight="Heavy" Height="18" Margin="0,0,0,42" />
                     </Grid>
                 </StackPanel>
 
@@ -63,7 +65,7 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand">
+                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding BrowseBookCommand}">
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="BookOpenPageVariant" Style="{StaticResource DashboardBtnIcon}" />
                             <TextBlock Text="Browse Books" Style="{StaticResource DashboardBtnTxt}"/>
@@ -84,7 +86,7 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <Button Grid.Row="8" x:Name="LogOut">
+                    <Button Grid.Row="8" x:Name="LogOut" Command="{Binding LogOutCommand}">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Height" Value="60"/>
@@ -122,10 +124,11 @@
 
             <Border Grid.Column="1" Background="White">
                 <Border.Resources>
-                    <DataTemplate DataType="{}">
-
+                    <DataTemplate DataType="{x:Type vms:SearchBooksViewModel}">
+                        <views:SearchBooksView/>
                     </DataTemplate>
                 </Border.Resources>
+                <ContentControl Content="{Binding CurrentDashboardViewModel}"/>
             </Border>
 
         </Grid>

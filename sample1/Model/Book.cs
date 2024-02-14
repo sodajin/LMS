@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,12 +29,12 @@ namespace LibraryManagementSystem.Model
     public class Book
     {
         public ulong ID { get; set;  }
-        public ulong ISBN { get; }
-        public string Title { get; }
-        public string Author { get; }
-        public string Publisher { get; }
-        public DateTime PublishedDate { get; }
-        public Genre Genre { get; }
+        public ulong ISBN { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set;  }
+        public string Publisher { get; set;  }
+        public DateTime PublishedDate { get; set; }
+        public Genre Genre { get; set; }
         public BookStatus Status { get; set; }
         public Book (
             ulong ID,
@@ -65,6 +66,16 @@ namespace LibraryManagementSystem.Model
             if (this.Title.ToLower().Contains(searchTest.ToLower()) ||
                 this.Author.ToLower().Contains(searchTest.ToLower())) return true;
             return false;
+        }
+        public void Replace(Book newBook)
+        {
+            this.ISBN = newBook.ISBN;
+            this.Title = newBook.Title;
+            this.Author = newBook.Author;
+            this.Publisher = newBook.Publisher;
+            this.PublishedDate = newBook.PublishedDate;
+            this.Genre = newBook.Genre;
+            this.Status = newBook.Status;
         }
     }
 }

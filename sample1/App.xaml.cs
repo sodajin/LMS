@@ -27,7 +27,7 @@ namespace sample1
             _users = new UserList();
 
             _library.AddBook(new Book(
-                _library.GetCurrentIDAndIncrement(),
+                _library.GetCurrentBookIDAndIncrement(),
                 9784091273437,
                 "Kimetsu no Yaiba, Vol. 1",
                 "Koyoharu Gotouge",
@@ -38,7 +38,7 @@ namespace sample1
                 )
             );
             _library.AddBook(new Book(
-                _library.GetCurrentIDAndIncrement(),
+                _library.GetCurrentBookIDAndIncrement(),
                 9781974700523,
                 "Komi-san Can't Communicate",
                 "Tomohito Oda",
@@ -79,9 +79,20 @@ namespace sample1
                 100,
                 AccountType.Simple
                 ));
+            _users.SignUp(new User(
+                "s",
+                "Smilie",
+                "",
+                "Pop",
+                "s",
+                "s",
+                100,
+                AccountType.Simple
+                ));
 
-            _library.BorrowBook(0, _users.Users[0], new DateTime(2023, 2, 14));
-            _library.ReturnBook(0, DateTime.Today);
+            _library.BorrowBook(1, _users.Users[0], new DateTime(2023, 2, 14));
+            _library.BorrowBook(2, _users.Users[0], new DateTime(2023, 2, 14));
+            //_library.ReturnBook(1, DateTime.Today);
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -100,9 +111,9 @@ namespace sample1
             return new LogInViewModel(_navigationStore, _users, CreateMemberDashboardViewModel, CreateAdminDashboardViewModel);
         }
 
-        private MemberDashboardViewModel CreateMemberDashboardViewModel()
+        private MemberDashboardViewModel CreateMemberDashboardViewModel(User user)
         {
-            return new MemberDashboardViewModel(_navigationStore, CreateLogInViewModel, _library);
+            return new MemberDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library);
         }
 
         private AdminDashboardViewModel CreateAdminDashboardViewModel(User user) 

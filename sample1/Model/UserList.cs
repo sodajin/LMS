@@ -8,7 +8,7 @@ namespace LibraryManagementSystem.Model
 {
     public class UserList
     {
-        public List<User> Users { get; }
+        public List<User> Users { get; set; }
         public UserList() 
         {
             Users = new List<User>();
@@ -33,15 +33,29 @@ namespace LibraryManagementSystem.Model
 
             return null;
         }
-
+        public List<User> SearchUserByString(string searchText)
+        {
+            return Users.Where(u => u.Match(searchText)).ToList();
+        }
         public List<User> GetSimpleUsers()
         {
             return Users.Where(u => u.AccountType == AccountType.Simple).ToList();
         }
-
+        public List<User> GetUsers()
+        {
+            return Users;
+        }
         public User GetUserFromElement(int index)
         {
             return Users.ElementAt(index);
+        }
+        public User GetUserFromID(string id)
+        {
+            return Users.Where(u => u.ID == id).FirstOrDefault();
+        }
+        public void ReplaceUser(User user, int index)
+        {
+            Users[index] = user;
         }
         public int GetReputation(int index)
         {

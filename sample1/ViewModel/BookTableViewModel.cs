@@ -10,6 +10,7 @@ namespace LibraryManagementSystem.ViewModel
     public class BookTableViewModel : ViewModelBase
     {
         public readonly Book _book;
+        public ulong ID => _book.ID;
         public ulong ISBN => _book.ISBN;
         public string Title => _book.Title;
         public string Author => _book.Author;

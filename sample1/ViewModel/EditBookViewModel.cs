@@ -14,9 +14,9 @@ namespace LibraryManagementSystem.ViewModel
     public class EditBookViewModel : ViewModelBase
     {
         private readonly Library _library;
-        private readonly int _index;
+        private readonly ulong _index;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ViewModelBase> _createManageBookViewModel;
+        private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
         private readonly Book _bookToEdit;
 
@@ -103,14 +103,14 @@ namespace LibraryManagementSystem.ViewModel
 
         public ICommand EditBookCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public EditBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createManageBookViewModel, int index)
+        public EditBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createManageBookViewModel, ulong index)
         {
             _library = library;
             _index = index;
             _dashboardNavigationStore = dashboardNavigationStore;
             _createManageBookViewModel = createManageBookViewModel;
 
-            _bookToEdit = _library.GetBookFromElement(index);
+            _bookToEdit = _library.GetBookFromID(index);
 
             _ISBN = _bookToEdit.ISBN;
             _title = _bookToEdit.Title;

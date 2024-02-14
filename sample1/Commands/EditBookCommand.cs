@@ -16,15 +16,15 @@ namespace LibraryManagementSystem.Commands
         private readonly EditBookViewModel _viewModel;
         private readonly Library _library;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ViewModelBase> _createManageBookViewModel;
-        private readonly int _index;
+        private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
+        private readonly ulong _index;
 
         public EditBookCommand(
             EditBookViewModel viewModel, 
             Library library, 
             NavigationStore dashboardNavigationStore,
-            Func<ViewModelBase> createManageBookViewModel,
-            int index
+            Func<List<Book>, string, ViewModelBase> createManageBookViewModel,
+            ulong index
         ) {
             _viewModel = viewModel;
             _library = library;
@@ -41,7 +41,7 @@ namespace LibraryManagementSystem.Commands
             }
 
             Book modifiedBook = new Book(
-                _library.GetBookFromElement(_index).ID,
+                _library.GetBookFromID(_index).ID,
                 _viewModel.ISBN,
                 _viewModel.Title,
                 _viewModel.Author,
@@ -51,10 +51,11 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Availability
             );
 
+
             _library.ReplaceBook(modifiedBook, _index);
 
             MessageBox.Show("Edit Book Complete");
-            _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel();
+            _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel(new List<Book>(), "");
         }
         public bool CheckData()
         {

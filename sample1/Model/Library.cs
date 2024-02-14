@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,18 @@ namespace LibraryManagementSystem.Model
 {
     public class Library
     {
-        public List<Book> Books { get; }
+        public List<Book> Books { get; set; }
         public List<BorrowedBook> BorrowedBooks { get; }
-        public ulong CurrentId { get; set; }
+        public List<RequestedBook> RequestedBooks{ get; }
+        public ulong CurrentBookID { get; set; }
+        public ulong CurrentBorrowedBookID { get; set; }
         public Library() 
         {
-            CurrentId = 0;
+            CurrentBookID = 0;
+            CurrentBorrowedBookID = 0;
             Books = new List<Book>();
             BorrowedBooks = new List<BorrowedBook>();
+            RequestedBooks = new List<RequestedBook>();
         }
         public void AddBook(Book book)
         {
@@ -27,15 +32,29 @@ namespace LibraryManagementSystem.Model
         }
         public List<BorrowedBook> GetBorrowedBooks()
         {
-            return BorrowedBooks;
+            return BorrowedBooks.Where(b => b.Status == Status.Borrowed).ToList();
+        }
+        public List <RequestedBook> GetRequestedBooks()
+        {
+            return RequestedBooks;
         }
         public Book GetBookFromElement(int index)
         {
             return Books.ElementAt(index);
         }
-        public void ReplaceBook(Book newBook, int index)
+        public Book GetBookFromID(ulong ID)
         {
-            Books[index] = newBook;
+            return Books.Where(b => b.ID == ID).FirstOrDefault();
+        }
+        public BorrowedBook GetBorrowedBookFromID(ulong ID)
+        {
+            return BorrowedBooks.Where(b => b.ID == ID).FirstOrDefault();
+        }
+        public void ReplaceBook(Book newBook, ulong ID)
+        {
+            Trace.WriteLine(ID);
+            Book book = GetBookFromID(ID);
+            book.Replace(newBook);
         }
         public List<Book> SearchBookByString(string searchText)
         {
@@ -45,23 +64,33 @@ namespace LibraryManagementSystem.Model
         {
             return Books.Where(b => b.Genre == genre).ToList();
         }
-        public void BorrowBook(int index, User user, DateTime dateBorrowed)
+        public List<BorrowedBook> SearchBorrowedBookByString(string searchText)
         {
-            Books[index].Status = BookStatus.Unavailable;
-            BorrowedBooks.Add(new BorrowedBook(user, Books[index], Status.Borrowed, dateBorrowed));
+            return BorrowedBooks.Where(b => b.Match(searchText) && b.Status == Status.Borrowed).ToList();
         }
-        public void ReturnBook(int index, DateTime dateReturned)
+        public void BorrowBook(ulong bookID, User user, DateTime dateBorrowed)
         {
-            BorrowedBook book = BorrowedBooks[index];
+            Book book = GetBookFromID(bookID);
+            book.Status = BookStatus.Unavailable;
+            BorrowedBooks.Add(new BorrowedBook(GetCurrentBorrowedBookIDAndIncrement(), user, book, Status.Borrowed, dateBorrowed));
+        }
+        public void ReturnBook(ulong bookID, DateTime dateReturned)
+        {
+            BorrowedBook book = GetBorrowedBookFromID(bookID);
             book.Status = Status.Returned;
             book.SetReturnDate(dateReturned);
             ulong getID = book.Book.ID;
             Books.FirstOrDefault(b => b.ID == getID).Status = BookStatus.Available;
         }
-        public ulong GetCurrentIDAndIncrement()
+        public ulong GetCurrentBookIDAndIncrement()
         {
-            CurrentId++;
-            return CurrentId;
+            CurrentBookID++;
+            return CurrentBookID;
+        }
+        public ulong GetCurrentBorrowedBookIDAndIncrement()
+        {
+            CurrentBorrowedBookID++;
+            return CurrentBorrowedBookID;
         }
     }
 }

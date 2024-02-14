@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
 
@@ -12,11 +13,18 @@ namespace LibraryManagementSystem.Commands
     public class DiscardCommand : CommandBase
     {
         private readonly NavigationStore _navigationStore;
-        private readonly Func<ViewModelBase> _createManageBooksViewModel;
-        public DiscardCommand(NavigationStore navigationStore, Func<ViewModelBase> createManageBooksViewModel) 
+        private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
+        private readonly Func<List<User>, string, ViewModelBase> _createManageMemberViewModel;
+        public DiscardCommand(NavigationStore navigationStore, Func<List<Book>, string, ViewModelBase> createManageBookViewModel) 
         {
             _navigationStore = navigationStore;
-            _createManageBooksViewModel = createManageBooksViewModel;
+            _createManageBookViewModel = createManageBookViewModel;
+        }
+
+        public DiscardCommand(NavigationStore navigationStore, Func<List<User>, string, ViewModelBase> createManageMemberViewModel)
+        {
+            _navigationStore = navigationStore;
+            _createManageMemberViewModel = createManageMemberViewModel;
         }
 
         public override void Execute(object parameter)
@@ -27,7 +35,16 @@ namespace LibraryManagementSystem.Commands
                 return;
             }
 
-            _navigationStore.CurrentViewModel = _createManageBooksViewModel();
+            if (_createManageBookViewModel != null)
+            {
+                _navigationStore.CurrentViewModel = _createManageBookViewModel(new List<Book>(), "");
+                return;
+            }
+            if (_createManageMemberViewModel != null)
+            {
+                _navigationStore.CurrentViewModel = _createManageMemberViewModel(new List<User>(), "");
+                return;
+            }
         }
     }
 }
