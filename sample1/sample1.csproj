@@ -159,6 +159,7 @@
     <Compile Include="Commands\AddBookCommand.cs" />
     <Compile Include="Commands\DiscardCommand.cs" />
     <Compile Include="Commands\NavigateSearchBooksCommand.cs" />
+    <Compile Include="Commands\PenalizeCommand.cs" />
     <Compile Include="Commands\SearchBooksCommand.cs" />
     <Compile Include="ViewModel\BorrowedBooksTableViewModel.cs" />
     <Compile Include="ViewModel\BorrowedBooksViewModel.cs" />

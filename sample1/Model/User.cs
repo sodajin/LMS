@@ -15,12 +15,12 @@ namespace LibraryManagementSystem.Model
     public class User
     {
         public string ID { get; }
-        public string FirstName { get; }
+        public string FirstName { get; set; }
         public string MiddleName { get; }
         public string LastName { get; }
         public string Username { get; }
         public string Password { get; }
-        public int Reputation { get; }
+        public int Reputation { get; set; }
         public AccountType AccountType { get; }
         public User(
             string id,
@@ -58,6 +58,11 @@ namespace LibraryManagementSystem.Model
         public string GetFullName()
         {
             return $"{FirstName} {MiddleName} {LastName}";
+        }
+
+        public void AddReputation(int reputation)
+        {
+            this.Reputation += reputation;
         }
     }
 }

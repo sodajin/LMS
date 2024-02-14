@@ -38,5 +38,18 @@ namespace LibraryManagementSystem.Model
         {
             return Users.Where(u => u.AccountType == AccountType.Simple).ToList();
         }
+
+        public User GetUserFromElement(int index)
+        {
+            return Users.ElementAt(index);
+        }
+        public int GetReputation(int index)
+        {
+            return Users.ElementAt(index).Reputation;
+        }
+        public void AddReputation(int index, int toAdd)
+        {
+            Users.ElementAt(index).AddReputation(toAdd);
+        }
     }
 }

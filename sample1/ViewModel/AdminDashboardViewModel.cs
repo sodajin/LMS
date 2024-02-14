@@ -15,7 +15,7 @@ namespace LibraryManagementSystem.ViewModel
 
         private readonly NavigationStore _navigationStore;
         private readonly Library _library;
-        private readonly  UserList _userList;
+        private readonly UserList _userList;
         private readonly User _user;
 
         private NavigationStore _dashboardNavigationStore;
@@ -59,7 +59,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ManageMembersViewModel CreateManageMembersViewModel()
         {
-            return new ManageMembersViewModel(_userList, _dashboardNavigationStore, CreateAddMemberViewModel);
+            return new ManageMembersViewModel(_userList, _dashboardNavigationStore, CreateAddMemberViewModel, CreateManageMembersViewModel);
         }
         private AddBookViewModel CreateAddBookViewModel()
         {
