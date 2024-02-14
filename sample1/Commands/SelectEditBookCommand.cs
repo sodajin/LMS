@@ -20,7 +20,6 @@ namespace LibraryManagementSystem.Commands
         public SelectEditBookCommand(int index, List<Book> books, NavigationStore navigationStore, Func<int, ViewModelBase> createEditBookViewModel) 
         {
             _index = index;
-            Trace.WriteLine($"In Edit Book Command: {_index}");
             _books = books;
             _navigationStore = navigationStore;
             _createEditBookViewModel = createEditBookViewModel;
