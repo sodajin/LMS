@@ -17,52 +17,31 @@
             <ListView Grid.Row="0" Margin="20,60,20,0"  Height="580" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" >
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
-                        <GridViewColumn Header="ISBN" Width="150">
+                        <GridViewColumn Header="Member ID" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding ISBN}" />
+                                    <TextBlock Text="{Binding MemberID}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Title" Width="200">
+                        <GridViewColumn Header="Member Name" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Title}" />
+                                    <TextBlock Text="{Binding MemberFullName}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Author" Width="150">
+                        <GridViewColumn Header="Credit" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Author}" />
+                                    <TextBlock Text="{Binding MemberReputation}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Publisher" Width="150">
+                        <GridViewColumn Header="Book Title" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Publisher}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Published Year" Width="150">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding PublishedYear}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Genre" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Genre}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Status" Width="110">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Status}" />
+                                    <TextBlock Text="{Binding BookTitle}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -75,12 +54,12 @@
                     <ColumnDefinition Width="250"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" Margin="20">
-                    <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddBookCommand}">
+                    <Button Style="{DynamicResource BasicBtn}" Command="{Binding AcceptRequestCommand}">
                         ACCEPT REQUEST
                     </Button>
                 </Border>
                 <Border Grid.Column="1" Margin="20">
-                    <Button Style="{DynamicResource BasicBtn}" Command="{Binding EditBookCommand}">
+                    <Button Style="{DynamicResource BasicBtn}" Command="{Binding DenyRequestCommand}">
                         DENY REQUEST
                     </Button>
                 </Border>

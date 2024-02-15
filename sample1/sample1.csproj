@@ -154,7 +154,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AcceptRequestCommand.cs" />
     <Compile Include="Commands\AddMemberCommand.cs" />
+    <Compile Include="Commands\DenyRequestCommand.cs" />
     <Compile Include="Commands\EditBookCommand.cs" />
     <Compile Include="Commands\AddBookCommand.cs" />
     <Compile Include="Commands\DiscardCommand.cs" />

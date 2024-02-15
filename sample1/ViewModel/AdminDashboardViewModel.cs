@@ -7,6 +7,7 @@ using System.Windows.Input;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.Commands;
 using LibraryManagementSystem.Model;
+using System.Windows;
 
 namespace LibraryManagementSystem.ViewModel
 {
@@ -21,7 +22,7 @@ namespace LibraryManagementSystem.ViewModel
         private NavigationStore _dashboardNavigationStore;
         public ViewModelBase CurrentDashboardViewModel => _dashboardNavigationStore.CurrentViewModel;
 
-        public ICommand SearchBooksCommand { get; } 
+        public ICommand SearchBooksCommand { get; }
         public ICommand RequestsCommand { get; }
         public ICommand ManageBooksCommand { get; }
         public ICommand ManageMembersCommand { get; }
@@ -43,6 +44,11 @@ namespace LibraryManagementSystem.ViewModel
             ManageBooksCommand = new NavigateManageBooksCommand(_dashboardNavigationStore, new List<Book>(), "", CreateManageBooksViewModel);
             ManageMembersCommand = new NavigateManageMembersCommand(_dashboardNavigationStore, new List<User>(), "", CreateManageMembersViewModel);
             LogOutCommand = new LogOutCommand(_navigationStore, createLogInViewModel);
+
+            if (_library.GetRequestedBooks().Count > 0)
+            {
+                MessageBox.Show($"You have {_library.GetRequestedBooks().Count} request(s).", "Requests", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private SearchBooksViewModel CreateSearchBooksViewModel(List<Book> results, string searchText)

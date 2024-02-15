@@ -16,9 +16,9 @@ namespace LibraryManagementSystem.ViewModel
         public string BookTitle => _borrowedBooks.Book.Title;
         public string DateBorrowed => _borrowedBooks.DateBorrowed.ToString("d");
         public string DateDue => _borrowedBooks.DateBorrowed.AddDays(3).ToString("d");
-        public string DateReturned => _borrowedBooks.DateReturned.Equals(new DateTime(1,1,1)) ? "" : _borrowedBooks.DateReturned.ToString("d");
+        public string DateReturned => _borrowedBooks.DateReturned.Equals(new DateTime(1, 1, 1)) ? "" : _borrowedBooks.DateReturned.ToString("d");
 
-        public BorrowedBooksTableViewModel(BorrowedBook borrowedBooks) 
+        public BorrowedBooksTableViewModel(BorrowedBook borrowedBooks)
         {
             _borrowedBooks = borrowedBooks;
         }

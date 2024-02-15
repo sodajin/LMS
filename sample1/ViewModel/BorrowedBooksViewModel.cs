@@ -31,7 +31,7 @@ namespace LibraryManagementSystem.ViewModel
             {
                 _selectIndex = value;
                 OnPropertyChanged(nameof(_selectIndex));
-                ReturnBookCommand = new ReturnBookCommand(_library, _bookTable[_selectIndex].ID, _dashboardNavigationStore, _createBorrowedBooksViewModel);
+                ReturnBookCommand = new ReturnBookCommand(_library, this, _bookTable[_selectIndex].ID, _dashboardNavigationStore, _createBorrowedBooksViewModel);
                 OnPropertyChanged(nameof(ReturnBookCommand));
             }
         }
@@ -50,15 +50,15 @@ namespace LibraryManagementSystem.ViewModel
         }
 
         public ICommand SearchBorrowedBooksCommand { get; set; }
-        public ICommand ReturnBookCommand { get; set;  }
+        public ICommand ReturnBookCommand { get; set; }
         public ICommand BackCommand { get; }
 
         public BorrowedBooksViewModel(
-            Library library, 
-            List<BorrowedBook> results, 
-            string searchText, 
-            NavigationStore dashboardNavigationStore, 
-            Func<List<Book>, string, ViewModelBase> createManageBookViewModel, 
+            Library library,
+            List<BorrowedBook> results,
+            string searchText,
+            NavigationStore dashboardNavigationStore,
+            Func<List<Book>, string, ViewModelBase> createManageBookViewModel,
             Func<List<BorrowedBook>, string, ViewModelBase> createBorrowedBooksViewModel)
         {
             _library = library;
@@ -87,7 +87,7 @@ namespace LibraryManagementSystem.ViewModel
             }
 
             SearchBorrowedBooksCommand = new SearchBorrowedBooksCommand(_library, _searchText, _dashboardNavigationStore, _createBorrowedBooksViewModel);
-            ReturnBookCommand = new ReturnBookCommand(_library, 0, _dashboardNavigationStore, _createBorrowedBooksViewModel);
+            ReturnBookCommand = new ReturnBookCommand(_library, this, 0, _dashboardNavigationStore, _createBorrowedBooksViewModel);
             BackCommand = new NavigateManageBooksCommand(_dashboardNavigationStore, new List<Book>(), "", _createManageBookViewModel);
         }
 
