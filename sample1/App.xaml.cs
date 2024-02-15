@@ -90,8 +90,10 @@ namespace sample1
                 AccountType.Simple
                 ));
 
-            _library.BorrowBook(1, _users.Users[0], new DateTime(2023, 2, 14));
-            _library.BorrowBook(2, _users.Users[0], new DateTime(2023, 2, 14));
+            _library.RequestBook(_library.Books[1], _users.Users[0]);
+
+            //_library.BorrowBook(_library.Books[0], _users.Users[0], new DateTime(2023, 2, 14));
+            //_library.BorrowBook(_library.Books[1], _users.Users[0], new DateTime(2023, 2, 14));
             //_library.ReturnBook(1, DateTime.Today);
         }
 
@@ -116,7 +118,7 @@ namespace sample1
             return new MemberDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library);
         }
 
-        private AdminDashboardViewModel CreateAdminDashboardViewModel(User user) 
+        private AdminDashboardViewModel CreateAdminDashboardViewModel(User user)
         {
             return new AdminDashboardViewModel(user, _navigationStore, CreateLogInViewModel, _library, _users);
         }

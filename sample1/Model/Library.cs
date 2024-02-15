@@ -11,13 +11,15 @@ namespace LibraryManagementSystem.Model
     {
         public List<Book> Books { get; set; }
         public List<BorrowedBook> BorrowedBooks { get; }
-        public List<RequestedBook> RequestedBooks{ get; }
+        public List<RequestedBook> RequestedBooks { get; }
         public ulong CurrentBookID { get; set; }
         public ulong CurrentBorrowedBookID { get; set; }
-        public Library() 
+        //public ulong CurrentRequestedBookID { get; set; }
+        public Library()
         {
             CurrentBookID = 0;
             CurrentBorrowedBookID = 0;
+            //CurrentRequestedBookID = 0;
             Books = new List<Book>();
             BorrowedBooks = new List<BorrowedBook>();
             RequestedBooks = new List<RequestedBook>();
@@ -26,7 +28,7 @@ namespace LibraryManagementSystem.Model
         {
             Books.Add(book);
         }
-        public List<Book> GetBooks() 
+        public List<Book> GetBooks()
         {
             return Books;
         }
@@ -34,13 +36,17 @@ namespace LibraryManagementSystem.Model
         {
             return BorrowedBooks.Where(b => b.Status == Status.Borrowed).ToList();
         }
-        public List <RequestedBook> GetRequestedBooks()
+        public List<RequestedBook> GetRequestedBooks()
         {
             return RequestedBooks;
         }
         public Book GetBookFromElement(int index)
         {
             return Books.ElementAt(index);
+        }
+        public RequestedBook GetRequestedBookFromElement(int index)
+        {
+            return RequestedBooks.ElementAt(index);
         }
         public Book GetBookFromID(ulong ID)
         {
@@ -68,15 +74,30 @@ namespace LibraryManagementSystem.Model
         {
             return BorrowedBooks.Where(b => b.Match(searchText) && b.Status == Status.Borrowed).ToList();
         }
-        public void BorrowBook(ulong bookID, User user, DateTime dateBorrowed)
+        public void RequestBook(Book book, User user)
         {
-            Book book = GetBookFromID(bookID);
+            RequestedBooks.Add(new RequestedBook(user, book));
+        }
+        public void AcceptRequestBook(RequestedBook requestedBook)
+        {
+            Book book = requestedBook.Book;
+            User user = requestedBook.User;
+            BorrowBook(book, user, DateTime.Today);
+            RequestedBooks.Remove(requestedBook);
+        }
+        public void DenyRequestBook(RequestedBook requestedBook)
+        {
+            RequestedBooks.Remove(requestedBook);
+        }
+        public void BorrowBook(Book book, User user, DateTime dateBorrowed)
+        {
+            //Book book = GetBookFromID(bookID);
             book.Status = BookStatus.Unavailable;
             BorrowedBooks.Add(new BorrowedBook(GetCurrentBorrowedBookIDAndIncrement(), user, book, Status.Borrowed, dateBorrowed));
         }
-        public void ReturnBook(ulong bookID, DateTime dateReturned)
+        public void ReturnBook(BorrowedBook book, DateTime dateReturned)
         {
-            BorrowedBook book = GetBorrowedBookFromID(bookID);
+            //BorrowedBook book = GetBorrowedBookFromID(bookID);
             book.Status = Status.Returned;
             book.SetReturnDate(dateReturned);
             ulong getID = book.Book.ID;
@@ -92,5 +113,10 @@ namespace LibraryManagementSystem.Model
             CurrentBorrowedBookID++;
             return CurrentBorrowedBookID;
         }
+        //public ulong GetCurrentRequestedBookIDAndIncrement()
+        //{
+        //    CurrentRequestedBookID++;
+        //    return CurrentRequestedBookID;
+        //}
     }
 }

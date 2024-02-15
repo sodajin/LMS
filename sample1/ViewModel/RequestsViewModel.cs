@@ -17,6 +17,7 @@ namespace LibraryManagementSystem.ViewModel
         private List<RequestedBook> _books => _library.GetRequestedBooks();
         private readonly ObservableCollection<RequestedBooksTableViewModel> _bookTable;
         private readonly NavigationStore _dashboardNavigationStore;
+        private readonly Func<ViewModelBase> _createRequestsViewModel;
 
         private int _selectIndex = -1;
 
@@ -27,16 +28,23 @@ namespace LibraryManagementSystem.ViewModel
             {
                 _selectIndex = value;
                 OnPropertyChanged(nameof(_selectIndex));
+                AcceptRequestCommand = new AcceptRequestCommand(_library, this, _dashboardNavigationStore, _createRequestsViewModel);
+                OnPropertyChanged(nameof(AcceptRequestCommand));
+                DenyRequestCommand = new DenyRequestCommand(_library, this, _dashboardNavigationStore, _createRequestsViewModel);
+                OnPropertyChanged(nameof(DenyRequestCommand));
             }
         }
 
-
         public IEnumerable<RequestedBooksTableViewModel> BookTable => _bookTable;
+
+        public ICommand AcceptRequestCommand { get; set; }
+        public ICommand DenyRequestCommand { get; set; }
 
         public RequestsViewModel(Library library, NavigationStore dashboardNavigationStore, Func<ViewModelBase> createRequestsViewModel)
         {
             _library = library;
             _dashboardNavigationStore = dashboardNavigationStore;
+            _createRequestsViewModel = createRequestsViewModel;
 
             _bookTable = new ObservableCollection<RequestedBooksTableViewModel>();
             IEnumerable<RequestedBook> IBookEnumerable = _books;
@@ -47,6 +55,8 @@ namespace LibraryManagementSystem.ViewModel
                 _bookTable.Add(new RequestedBooksTableViewModel(book_enumerate.Current));
             }
 
+            AcceptRequestCommand = new AcceptRequestCommand(_library, this, _dashboardNavigationStore, _createRequestsViewModel);
+            DenyRequestCommand = new DenyRequestCommand(_library, this, _dashboardNavigationStore, _createRequestsViewModel);
         }
 
     }

@@ -13,13 +13,15 @@ namespace LibraryManagementSystem.Commands
     public class ReturnBookCommand : CommandBase
     {
         private readonly Library _library;
+        private readonly BorrowedBooksViewModel _viewModel;
         private readonly ulong _id;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<BorrowedBook>, string, ViewModelBase> _createSearchBorrowedBookViewModel;
 
-        public ReturnBookCommand(Library library, ulong id, NavigationStore dashboardNavigationStore, Func<List<BorrowedBook>, string, ViewModelBase> createSearchBorrowedBookViewModel) 
+        public ReturnBookCommand(Library library, BorrowedBooksViewModel viewModel, ulong id, NavigationStore dashboardNavigationStore, Func<List<BorrowedBook>, string, ViewModelBase> createSearchBorrowedBookViewModel)
         {
             _library = library;
+            _viewModel = viewModel;
             _id = id;
             _dashboardNavigationStore = dashboardNavigationStore;
             _createSearchBorrowedBookViewModel = createSearchBorrowedBookViewModel;
@@ -32,12 +34,12 @@ namespace LibraryManagementSystem.Commands
                 return;
             }
 
-            //BorrowedBook book = _library.GetBorrowedBookFromID(_id);
 
             MessageBoxResult result = MessageBox.Show("This book will be returned. Confirm?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No) { return;  }
+            if (result == MessageBoxResult.No) { return; }
 
-            _library.ReturnBook(_id, DateTime.Now);
+            BorrowedBook book = _library.GetBorrowedBookFromID(_viewModel.BookTable.ElementAt(_viewModel.SelectIndex).ID);
+            _library.ReturnBook(book, DateTime.Now);
 
             _dashboardNavigationStore.CurrentViewModel = _createSearchBorrowedBookViewModel(new List<BorrowedBook>(), "");
         }
