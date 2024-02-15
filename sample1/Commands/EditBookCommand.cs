@@ -17,14 +17,14 @@ namespace LibraryManagementSystem.Commands
         private readonly Library _library;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
-        private readonly ulong _index;
+        private readonly int _index;
 
         public EditBookCommand(
             EditBookViewModel viewModel, 
             Library library, 
             NavigationStore dashboardNavigationStore,
             Func<List<Book>, string, ViewModelBase> createManageBookViewModel,
-            ulong index
+            int index
         ) {
             _viewModel = viewModel;
             _library = library;
@@ -59,7 +59,7 @@ namespace LibraryManagementSystem.Commands
         }
         public bool CheckData()
         {
-            if (_viewModel.ISBN == 0 ||
+            if (_viewModel.ISBN == null || _viewModel.ISBN == "" ||
             _viewModel.Title == null || _viewModel.Title == "" ||
             _viewModel.Author == null || _viewModel.Author == "" ||
             _viewModel.Publisher == null || _viewModel.Publisher == "" ||

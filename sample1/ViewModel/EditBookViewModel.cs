@@ -14,14 +14,14 @@ namespace LibraryManagementSystem.ViewModel
     public class EditBookViewModel : ViewModelBase
     {
         private readonly Library _library;
-        private readonly ulong _index;
+        private readonly int _index;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
         private readonly Book _bookToEdit;
 
-        private ulong _ISBN;
-        public ulong ISBN
+        private string _ISBN;
+        public string ISBN
         {
             get => _ISBN;
             set
@@ -103,7 +103,7 @@ namespace LibraryManagementSystem.ViewModel
 
         public ICommand EditBookCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public EditBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createManageBookViewModel, ulong index)
+        public EditBookViewModel(Library library, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createManageBookViewModel, int index)
         {
             _library = library;
             _index = index;

@@ -17,8 +17,8 @@ namespace LibraryManagementSystem.ViewModel
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
-        private ulong _ISBN;
-        public ulong ISBN
+        private string _ISBN;
+        public string ISBN
         {
             get => _ISBN;
             set

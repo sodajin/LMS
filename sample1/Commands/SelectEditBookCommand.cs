@@ -13,11 +13,11 @@ namespace LibraryManagementSystem.Commands
 {
     public class SelectEditBookCommand : CommandBase
     {
-        public ulong _id;
+        public int _id;
         private readonly Library _library;
         private readonly NavigationStore _navigationStore;
-        private readonly Func<ulong, ViewModelBase> _createEditBookViewModel;
-        public SelectEditBookCommand(ManageBooksViewModel viewModel, Library library, ulong ID, NavigationStore navigationStore, Func<ulong, ViewModelBase> createEditBookViewModel) 
+        private readonly Func<int, ViewModelBase> _createEditBookViewModel;
+        public SelectEditBookCommand(ManageBooksViewModel viewModel, Library library, int ID, NavigationStore navigationStore, Func<int, ViewModelBase> createEditBookViewModel) 
         {
             _library = library;
             _id = ID;

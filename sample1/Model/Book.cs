@@ -29,8 +29,8 @@ namespace LibraryManagementSystem.Model
     }
     public class Book
     {
-        public ulong ID { get; set;  }
-        public ulong ISBN { get; set; }
+        public int ID { get; set;  }
+        public string ISBN { get; set; }
         public string Title { get; set; }
         public string Author { get; set;  }
         public string Publisher { get; set;  }
@@ -38,8 +38,8 @@ namespace LibraryManagementSystem.Model
         public Genre Genre { get; set; }
         public BookStatus Status { get; set; }
         public Book (
-            ulong ID,
-            ulong isbn,
+            int ID,
+            string isbn,
             string title,
             string author,
             string publisher,

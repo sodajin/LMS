@@ -13,14 +13,14 @@ namespace LibraryManagementSystem.Model
     }
     public class BorrowedBook
     {
-        public ulong ID { get; }
+        public int ID { get; }
         public User User { get; }
         public Book Book { get; }
         public DateTime DateBorrowed { get; }
         public DateTime DateReturned { get; set;  }
         public Status Status { get; set; }   
         public BorrowedBook(
-            ulong ID,
+            int ID,
             User user, 
             Book book, 
             Status status,

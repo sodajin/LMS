@@ -12,9 +12,9 @@ namespace LibraryManagementSystem.Model
         public List<Book> Books { get; set; }
         public List<BorrowedBook> BorrowedBooks { get; }
         public List<RequestedBook> RequestedBooks { get; }
-        public ulong CurrentBookID { get; set; }
-        public ulong CurrentBorrowedBookID { get; set; }
-        //public ulong CurrentRequestedBookID { get; set; }
+        public int CurrentBookID { get; set; }
+        public int CurrentBorrowedBookID { get; set; }
+        //public string CurrentRequestedBookID { get; set; }
         public Library()
         {
             CurrentBookID = 0;
@@ -56,15 +56,15 @@ namespace LibraryManagementSystem.Model
         {
             return RequestedBooks.ElementAt(index);
         }
-        public Book GetBookFromID(ulong ID)
+        public Book GetBookFromID(int ID)
         {
             return Books.Where(b => b.ID == ID).FirstOrDefault();
         }
-        public BorrowedBook GetBorrowedBookFromID(ulong ID)
+        public BorrowedBook GetBorrowedBookFromID(int ID)
         {
             return BorrowedBooks.Where(b => b.ID == ID).FirstOrDefault();
         }
-        public void ReplaceBook(Book newBook, ulong ID)
+        public void ReplaceBook(Book newBook, int ID)
         {
             Trace.WriteLine(ID);
             Book book = GetBookFromID(ID);
@@ -108,20 +108,20 @@ namespace LibraryManagementSystem.Model
             //BorrowedBook book = GetBorrowedBookFromID(bookID);
             book.Status = Status.Returned;
             book.SetReturnDate(dateReturned);
-            ulong getID = book.Book.ID;
+            int getID = book.Book.ID;
             Books.FirstOrDefault(b => b.ID == getID).Status = BookStatus.Available;
         }
-        public ulong GetCurrentBookIDAndIncrement()
+        public int GetCurrentBookIDAndIncrement()
         {
             CurrentBookID++;
             return CurrentBookID;
         }
-        public ulong GetCurrentBorrowedBookIDAndIncrement()
+        public int GetCurrentBorrowedBookIDAndIncrement()
         {
             CurrentBorrowedBookID++;
             return CurrentBorrowedBookID;
         }
-        //public ulong GetCurrentRequestedBookIDAndIncrement()
+        //public string GetCurrentRequestedBookIDAndIncrement()
         //{
         //    CurrentRequestedBookID++;
         //    return CurrentRequestedBookID;

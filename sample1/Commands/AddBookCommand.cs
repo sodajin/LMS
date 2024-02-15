@@ -55,7 +55,7 @@ namespace LibraryManagementSystem.Commands
 
         public bool CheckData()
         {
-            if (_viewModel.ISBN == 0 ||
+            if (_viewModel.ISBN == null || _viewModel.ISBN == "" ||
             _viewModel.Title == null || _viewModel.Title == "" ||
             _viewModel.Author == null || _viewModel.Author == "" ||
             _viewModel.Publisher == null || _viewModel.Publisher == "" ||

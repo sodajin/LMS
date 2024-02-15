@@ -66,7 +66,7 @@ namespace LibraryManagementSystem.ViewModel
         {
             return new AddBookViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel);
         }
-        private EditBookViewModel CreateEditBookViewModel(ulong index)
+        private EditBookViewModel CreateEditBookViewModel(int index)
         {
             return new EditBookViewModel(_library, _dashboardNavigationStore, CreateManageBooksViewModel, index);
         }

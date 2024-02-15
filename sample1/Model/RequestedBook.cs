@@ -8,7 +8,7 @@ namespace LibraryManagementSystem.Model
 {
     public class RequestedBook
     {
-        //public ulong ID { get; set; }
+        //public string ID { get; set; }
         public User User { get; }
         public Book Book { get; }
 

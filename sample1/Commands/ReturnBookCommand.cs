@@ -14,11 +14,11 @@ namespace LibraryManagementSystem.Commands
     {
         private readonly Library _library;
         private readonly BorrowedBooksViewModel _viewModel;
-        private readonly ulong _id;
+        private readonly int _id;
         private readonly NavigationStore _dashboardNavigationStore;
         private readonly Func<List<BorrowedBook>, string, ViewModelBase> _createSearchBorrowedBookViewModel;
 
-        public ReturnBookCommand(Library library, BorrowedBooksViewModel viewModel, ulong id, NavigationStore dashboardNavigationStore, Func<List<BorrowedBook>, string, ViewModelBase> createSearchBorrowedBookViewModel)
+        public ReturnBookCommand(Library library, BorrowedBooksViewModel viewModel, int id, NavigationStore dashboardNavigationStore, Func<List<BorrowedBook>, string, ViewModelBase> createSearchBorrowedBookViewModel)
         {
             _library = library;
             _viewModel = viewModel;

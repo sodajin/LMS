@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.ViewModel
     public class RequestedBooksTableViewModel : ViewModelBase
     {
         public readonly RequestedBook _requestedBooks;
-        //public ulong ID => _requestedBooks.ID;
+        //public string ID => _requestedBooks.ID;
         public string MemberID => _requestedBooks.User.ID;
         public string MemberFullName => _requestedBooks.User.GetFullName();
         public int MemberReputation => _requestedBooks.User.Reputation;

@@ -19,7 +19,7 @@ namespace LibraryManagementSystem.ViewModel
         private List<Book> _books;
         private readonly ObservableCollection<BookTableViewModel> _bookTable;
         private readonly NavigationStore _dashboardNavigationStore;
-        private readonly Func<ulong, ViewModelBase> _createEditBookViewModel;
+        private readonly Func<int, ViewModelBase> _createEditBookViewModel;
         private readonly Func<List<Book>, string, ViewModelBase> _createManageBookViewModel;
 
         public IEnumerable<BookTableViewModel> BookTable => _bookTable;
@@ -94,7 +94,7 @@ namespace LibraryManagementSystem.ViewModel
             Library library, List<Book> results, string searchText,
             NavigationStore dashboardNavigationStore, 
             Func<ViewModelBase> createAddBookViewModel, 
-            Func<ulong, ViewModelBase> createEditBookViewModel,
+            Func<int, ViewModelBase> createEditBookViewModel,
             Func<List<BorrowedBook>, string, ViewModelBase> createBorrowedBooksViewModel,
             Func<List<Book>, string, ViewModelBase> createManageBookViewModel
         ) {
