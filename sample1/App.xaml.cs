@@ -26,75 +26,75 @@ namespace sample1
             _library = new Library();
             _users = new UserList();
 
-            _library.AddBook(new Book(
-                _library.GetCurrentBookIDAndIncrement(),
-                9784091273437,
-                "Kimetsu no Yaiba, Vol. 1",
-                "Koyoharu Gotouge",
-                "VIZ Media LLC",
-                new DateTime(2016, 2, 15),
-                Genre.Arts,
-                BookStatus.Available
-                )
-            );
-            _library.AddBook(new Book(
-                _library.GetCurrentBookIDAndIncrement(),
-                9781974700523,
-                "Komi-san Can't Communicate",
-                "Tomohito Oda",
-                "Shogakukan",
-                new DateTime(2016, 9, 16),
-                Genre.Arts,
-                BookStatus.Available
-                )
-            );
+            //_library.AddBook(new Book(
+            //    _library.GetCurrentBookIDAndIncrement(),
+            //    9784091273437,
+            //    "Kimetsu no Yaiba, Vol. 1",
+            //    "Koyoharu Gotouge",
+            //    "VIZ Media LLC",
+            //    new DateTime(2016, 2, 15),
+            //    Genre.Arts,
+            //    BookStatus.Available
+            //    )
+            //);
+            //_library.AddBook(new Book(
+            //    _library.GetCurrentBookIDAndIncrement(),
+            //    9781974700523,
+            //    "Komi-san Can't Communicate",
+            //    "Tomohito Oda",
+            //    "Shogakukan",
+            //    new DateTime(2016, 9, 16),
+            //    Genre.Arts,
+            //    BookStatus.Available
+            //    )
+            //);
 
-            _users.SignUp(new User(
-                "2021-10945-MN-0",
-                "Genesis",
-                "Cornista",
-                "Lovino",
-                "lezzthanthree",
-                "password",
-                100,
-                AccountType.Admin
-                ));
-            _users.SignUp(new User(
-                "a",
-                "Anthonette",
-                "Villafuente",
-                "Macapanas",
-                "a",
-                "a",
-                100,
-                AccountType.Admin
-                ));
-            _users.SignUp(new User(
-                "2021-10946-MN-0",
-                "Smilie",
-                "",
-                "Pop",
-                "smiliep",
-                "password",
-                100,
-                AccountType.Simple
-                ));
-            _users.SignUp(new User(
-                "s",
-                "Smilie",
-                "",
-                "Pop",
-                "s",
-                "s",
-                100,
-                AccountType.Simple
-                ));
+            //_users.SignUp(new User(
+            //    "2021-10945-MN-0",
+            //    "Genesis",
+            //    "Cornista",
+            //    "Lovino",
+            //    "lezzthanthree",
+            //    "password",
+            //    100,
+            //    AccountType.Admin
+            //    ));
+            //_users.SignUp(new User(
+            //    "a",
+            //    "Anthonette",
+            //    "Villafuente",
+            //    "Macapanas",
+            //    "a",
+            //    "a",
+            //    100,
+            //    AccountType.Admin
+            //    ));
+            //_users.SignUp(new User(
+            //    "2021-10946-MN-0",
+            //    "Smilie",
+            //    "",
+            //    "Pop",
+            //    "smiliep",
+            //    "password",
+            //    100,
+            //    AccountType.Simple
+            //    ));
+            //_users.SignUp(new User(
+            //    "s",
+            //    "Smilie",
+            //    "",
+            //    "Pop",
+            //    "s",
+            //    "s",
+            //    100,
+            //    AccountType.Simple
+            //    ));
 
-            _library.RequestBook(_library.Books[1], _users.Users[0]);
+            //_library.RequestBook(_library.Books[1], _users.Users[0]);
 
-            //_library.BorrowBook(_library.Books[0], _users.Users[0], new DateTime(2023, 2, 14));
-            //_library.BorrowBook(_library.Books[1], _users.Users[0], new DateTime(2023, 2, 14));
-            //_library.ReturnBook(1, DateTime.Today);
+            ////_library.BorrowBook(_library.Books[0], _users.Users[0], new DateTime(2023, 2, 14));
+            ////_library.BorrowBook(_library.Books[1], _users.Users[0], new DateTime(2023, 2, 14));
+            ////_library.ReturnBook(1, DateTime.Today);
         }
 
         protected override void OnStartup(StartupEventArgs e)
