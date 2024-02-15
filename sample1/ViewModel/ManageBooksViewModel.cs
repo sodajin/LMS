@@ -51,6 +51,40 @@ namespace LibraryManagementSystem.ViewModel
             }
         }
 
+        private Genre _genre = Genre.None;
+        public Genre Genre
+        {
+            get => _genre;
+            set
+            {
+                _genre = value;
+                OnPropertyChanged(nameof(_genre));
+                FilterBooks(_genre);
+            }
+        }
+
+        public ObservableCollection<Genre> GenreItems => new ObservableCollection<Genre>(Enum.GetValues(typeof(Genre)).Cast<Genre>());
+
+        public void FilterBooks(Genre genre)
+        {
+            if (_genre != Genre.None)
+            {
+                _books = _library.GetBooksByGenre(_genre);
+            }
+            else
+            {
+                _books = _library.GetBooks();
+            }
+            _bookTable.Clear();
+            IEnumerable<Book> IBookEnumerable = _books;
+            IEnumerator<Book> book_enumerate = IBookEnumerable.GetEnumerator();
+
+            while (book_enumerate.MoveNext())
+            {
+                _bookTable.Add(new BookTableViewModel(book_enumerate.Current));
+            }
+        }
+
         public ICommand AddBookCommand { get; }
         public ICommand EditBookCommand { get; set;  }
         public ICommand ViewBorrowedBooksCommand { get; }

@@ -93,6 +93,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Margin="20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddBookCommand}">
@@ -109,6 +110,7 @@
                     VIEW BORROWED BOOKS
                 </Button>
             </Border>
+            <ComboBox Grid.Column="3" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
     </Grid>

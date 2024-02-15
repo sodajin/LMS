@@ -9,6 +9,7 @@ namespace LibraryManagementSystem.Model
 {
     public enum Genre
     {
+        None,
         GeneralWorks,
         Philosophy,
         Religion,

@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -35,7 +36,7 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Grid.Column="1" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Grid.Row="1" Margin="20,0,20,60" Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Grid.Column="1" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
                     <GridViewColumn Header="Title" Width="400">
@@ -69,5 +70,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <ComboBox Grid.Row="2" Grid.Column="1" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>
