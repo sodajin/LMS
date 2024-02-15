@@ -15,9 +15,9 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            
 
+            <Border Background="White"/>
+            
             <Border Grid.Column="0" CornerRadius="0,45,45,0">
                 <Border.Background>
                     <ImageBrush ImageSource="/Resources/DashboardBackground/IMG_10.png"/>

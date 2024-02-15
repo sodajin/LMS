@@ -6,25 +6,30 @@
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="900">
+             d:DesignHeight="750" d:DesignWidth="1200">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="0,60,0,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0,60,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="900"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBox Margin="20" Padding="20" FontSize="15" Width="660"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}"/>
+                <TextBox Margin="20" Padding="20" FontSize="15" Width="855"  BorderThickness="0,0,0,2" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}"/>
             </StackPanel>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="638,0,0,0" Width="62" VerticalAlignment="Center" Height="35">
-                <Icons:PackIconMaterial Kind="Magnify" Foreground="Gray" Height="31" Width="30" />
-            </StackPanel>
+           
 
             <Border Grid.Column="1" Margin="20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBorrowedBooksCommand}">
@@ -32,66 +37,60 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
+        <ListView Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" BorderThickness="0" Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
-                    <GridViewColumn Header="Member ID" Width="150">
+                    <GridViewColumn Header="MEMBER ID" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding MemberID}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Name" Width="200">
+                    <GridViewColumn Header="BORROWER NAME" Width="400">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding MemberFullName}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Book Title" Width="200">
+                    <GridViewColumn Header="BOOK TITLE" Width="400">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding BookTitle}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Date Borrowed" Width="150">
+                    <GridViewColumn Header="DATE BORROWED" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding DateBorrowed}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Date Due" Width="150">
+                    <GridViewColumn Header="DATE DUE" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding DateDue}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Date Returned" Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DateReturned}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="240"/>
-                <ColumnDefinition Width="*"/>
+                
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Margin="20">
+            <Border Grid.Column="1" Margin="20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding BackCommand}">
                     BACK
                 </Button>
             </Border>
-            <Border Grid.Column="1" Margin="20">
+            <Border Grid.Column="2" Margin="20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding ReturnBookCommand}">
                     RETURN BOOK
                 </Button>

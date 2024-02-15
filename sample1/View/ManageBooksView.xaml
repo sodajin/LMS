@@ -8,23 +8,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1200">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="0,60,0,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,30,0,0" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="940"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBox Margin="20" Padding="20" FontSize="15" Width="660"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}"/>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                <TextBox Margin="20" Padding="20" FontSize="15" Width="895"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}" Background="Transparent"/>
             </StackPanel>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="638,0,0,0" Width="62" VerticalAlignment="Center" Height="35">
-                <Icons:PackIconMaterial Kind="Magnify" Foreground="Gray" Height="31" Width="30" />
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Margin="22,0,0,0" Background="#ff6d00" CornerRadius="0,10,10,0">
+                        <TextBlock Margin="15,0,0,0" VerticalAlignment="Center"  FontSize="18" FontWeight="Bold" Foreground="White" FontFamily="Helvetica" Text="SEARCH BY GENRE"/>
+                    </Border>
+
+                    <ComboBox Grid.Column="1" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,-476,0" />
+                </Grid>
             </StackPanel>
+
 
             <Border Grid.Column="1" Margin="20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBooksCommand}">
@@ -32,53 +58,53 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+        <ListView Grid.Row="1" Grid.Column="1" Margin="20,10,20,0" Height="500" BorderThickness="0" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
 
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
-                    <GridViewColumn Header="ISBN" Width="150">
+                    <GridViewColumn Header="ISBN" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding ISBN}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Title" Width="200">
+                    <GridViewColumn Header="TITLE" Width="400">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Title}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Author" Width="150">
+                    <GridViewColumn Header="AUTHOR" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Author}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Publisher" Width="150">
+                    <GridViewColumn Header="PUBLISHER" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Publisher}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Published Year" Width="150">
+                    <GridViewColumn Header="YEAR PUBLISHED" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding PublishedYear}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Genre" Width="100">
+                    <GridViewColumn Header="GENRE" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Genre}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Status" Width="110">
+                    <GridViewColumn Header="STATUS" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Status}" />
@@ -88,29 +114,29 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Margin="20">
+            <Border Grid.Column="0" Margin="10">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddBookCommand}">
                     ADD BOOK
                 </Button>
             </Border>
-            <Border Grid.Column="1" Margin="20">
+            <Border Grid.Column="1" Margin="10">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding EditBookCommand}">
                     EDIT BOOK
                 </Button>
             </Border>
-            <Border Grid.Column="2" Margin="130,20,0,20" HorizontalAlignment="Left" Width="350">
+            <Border Grid.Column="2" Margin="330,10,0,10" HorizontalAlignment="Left" Width="350">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding ViewBorrowedBooksCommand}">
                     VIEW BORROWED BOOKS
                 </Button>
             </Border>
-            <ComboBox Grid.Column="3" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
+            
         </Grid>
 
     </Grid>
