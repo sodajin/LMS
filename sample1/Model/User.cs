@@ -24,22 +24,22 @@ namespace LibraryManagementSystem.Model
         public AccountType AccountType { get; }
         public User(
             string id,
-            string firstName,
-            string middleName,
-            string lastName,
-            string username,
-            string password,
-            int reputation,
-            AccountType accountType
+            string FirstName,
+            string MiddleName,
+            string LastName,
+            string Username,
+            string Password,
+            int Reputation,
+            AccountType AccountType
         ) {
             this.ID = id;
-            this.FirstName = firstName;
-            this.MiddleName = middleName;
-            this.LastName = lastName;
-            this.Username = username;
-            this.Password = password;
-            this.Reputation = reputation;
-            this.AccountType = accountType;
+            this.FirstName = FirstName;
+            this.MiddleName = MiddleName;
+            this.LastName = LastName;
+            this.Username = Username;
+            this.Password = Password;
+            this.Reputation = Reputation;
+            this.AccountType = AccountType;
         }
 
         public bool Match(string id, string username, string password)

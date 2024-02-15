@@ -13,24 +13,24 @@ namespace LibraryManagementSystem.Model
     }
     public class BorrowedBook
     {
-        public int ID { get; }
-        public User User { get; }
-        public Book Book { get; }
-        public DateTime DateBorrowed { get; }
+        public int ID { get; set; }
+        public User User { get; set; }
+        public Book Book { get; set; }
+        public DateTime DateBorrowed { get; set; }
         public DateTime DateReturned { get; set;  }
         public Status Status { get; set; }   
         public BorrowedBook(
             int ID,
-            User user, 
-            Book book, 
-            Status status,
-            DateTime dateBorrowed
+            User User, 
+            Book Book, 
+            Status Status,
+            DateTime DateBorrowed
         ) {
             this.ID = ID;
-            this.User = user;
-            this.Book = book;
-            this.Status = status;
-            this.DateBorrowed = dateBorrowed;
+            this.User = User;
+            this.Book = Book;
+            this.Status = Status;
+            this.DateBorrowed = DateBorrowed;
             this.DateReturned = new DateTime(1, 1, 1);
         }
         public void SetReturnDate( DateTime date )

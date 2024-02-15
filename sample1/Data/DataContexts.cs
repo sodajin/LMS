@@ -10,6 +10,11 @@ namespace LibraryManagementSystem.Data
 {
     public class DataContexts : DbContext
     {
+        //public DbSet<User> User { get; set; }
+        //public DbSet<Book> Book { get; set; }
+        //public DbSet<RequestedBookDTO> RequestedBooks { get; set; }
+        //public DbSet<BorrowedBookDTO> BorrowedBooks { get; set; }
+
         public DbSet<Library> Library { get; set; }
         public DbSet<UserList> UserList { get; set; }
 

@@ -39,7 +39,7 @@ namespace LibraryManagementSystem.Model
         public BookStatus Status { get; set; }
         public Book (
             int ID,
-            string isbn,
+            string ISBN,
             string title,
             string author,
             string publisher,
@@ -48,7 +48,7 @@ namespace LibraryManagementSystem.Model
             BookStatus status
         ) {
             this.ID = ID;
-            this.ISBN = isbn;
+            this.ISBN = ISBN;
             this.Title = title;
             this.Author = author;
             this.Publisher = publisher;

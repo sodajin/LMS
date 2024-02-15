@@ -280,7 +280,9 @@
     <Compile Include="Commands\SearchBorrowedBooksCommand.cs" />
     <Compile Include="Commands\SearchUserCommand.cs" />
     <Compile Include="Commands\SearchBooksCommand.cs" />
+    <Compile Include="Data\BorrowedBookDTO.cs" />
     <Compile Include="Data\DataContexts.cs" />
+    <Compile Include="Data\RequestedBookDTO.cs" />
     <Compile Include="Model\RequestedBook.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\RequestedBookTableViewModel.cs" />
