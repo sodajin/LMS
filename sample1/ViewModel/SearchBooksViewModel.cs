@@ -18,6 +18,7 @@ namespace LibraryManagementSystem.ViewModel
         private List<Book> _books;
         private readonly ObservableCollection<BookTableViewModel> _bookTable;
         private readonly Func<List<Book>, string, ViewModelBase> _createSearchBookViewModel;
+        private readonly Func<Book, List<Book>, string, ViewModelBase> _createBookViewModel;
         private readonly NavigationStore _dashboardNavigationStore;
 
         public IEnumerable<BookTableViewModel> BookTable => _bookTable;
@@ -35,14 +36,32 @@ namespace LibraryManagementSystem.ViewModel
             }
         }
 
+        private int _selectIndex = -1;
+        public int SelectIndex
+        {
+            get => _selectIndex;
+            set
+            {
+                _selectIndex = value;
+                OnPropertyChanged(nameof(_selectIndex));
+                _dashboardNavigationStore.CurrentViewModel = _createBookViewModel(
+                    _library.GetBookFromID(BookTable.ElementAt(_selectIndex).ID),
+                    _books,
+                    _searchText
+                );
+            }
+        }
+
+
         public ICommand SearchBooksCommand { get; set; }
 
-        public SearchBooksViewModel(Library library, List<Book> results, string searchText, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createSearchBookViewModel)
+        public SearchBooksViewModel(Library library, List<Book> results, string searchText, NavigationStore dashboardNavigationStore, Func<List<Book>, string, ViewModelBase> createSearchBookViewModel, Func<Book, List<Book>, string, ViewModelBase> createBookViewModel)
         {
             _library = library;
             _searchText = searchText;
-            _createSearchBookViewModel = createSearchBookViewModel;
             _dashboardNavigationStore = dashboardNavigationStore;
+            _createSearchBookViewModel = createSearchBookViewModel;
+            _createBookViewModel = createBookViewModel;
 
             if (results.Count == 0 && searchText == "") 
             {

@@ -34,6 +34,12 @@ namespace LibraryManagementSystem.Commands
 
             RequestedBook requestedBook = _library.GetRequestedBookFromElement(_viewModel.SelectIndex);
 
+            if (requestedBook.Book.Status == BookStatus.Unavailable) 
+            {
+                MessageBox.Show($"The book is currently borrowed or unavailable.", "Book unavailable", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             _library.AcceptRequestBook(requestedBook);
 
             MessageBox.Show("Requested book accepted");

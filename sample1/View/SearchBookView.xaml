@@ -30,13 +30,12 @@
             </StackPanel>
 
             <Border Grid.Column="1" Margin="20,20,20,20">
-                <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchUserCommand}">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchBooksCommand}">
                     SEARCH
                 </Button>
             </Border>
         </Grid>
-        <ListView Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Grid.Column="1">
-
+        <ListView Grid.Row="1" Margin="20,0,20,60" Height="560" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Grid.Column="1" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
                     <GridViewColumn Header="Title" Width="400">

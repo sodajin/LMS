@@ -39,7 +39,6 @@ namespace LibraryManagementSystem.ViewModel
             _dashboardNavigationStore = new NavigationStore();
             _dashboardNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            SearchBooksCommand = new NavigateSearchBooksCommand(_dashboardNavigationStore, new List<Book>(), "", CreateSearchBooksViewModel);
             RequestsCommand = new NavigateCommand(_dashboardNavigationStore, CreateRequestsViewModel);
             ManageBooksCommand = new NavigateManageBooksCommand(_dashboardNavigationStore, new List<Book>(), "", CreateManageBooksViewModel);
             ManageMembersCommand = new NavigateManageMembersCommand(_dashboardNavigationStore, new List<User>(), "", CreateManageMembersViewModel);
@@ -50,11 +49,7 @@ namespace LibraryManagementSystem.ViewModel
                 MessageBox.Show($"You have {_library.GetRequestedBooks().Count} request(s).", "Requests", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
-        private SearchBooksViewModel CreateSearchBooksViewModel(List<Book> results, string searchText)
-        {
-            return new SearchBooksViewModel(_library, results, searchText, _dashboardNavigationStore, CreateSearchBooksViewModel);
-        }
+        
         private RequestsViewModel CreateRequestsViewModel()
         {
             return new RequestsViewModel(_library, _dashboardNavigationStore, CreateRequestsViewModel);
@@ -79,7 +74,6 @@ namespace LibraryManagementSystem.ViewModel
         {
             return new BorrowedBooksViewModel(_library, results, searchText, _dashboardNavigationStore, CreateManageBooksViewModel, CreateBorrowedBooksViewModel);
         }
-
         private AddMemberViewModel CreateAddMemberViewModel()
         {
             return new AddMemberViewModel(_userList, _dashboardNavigationStore, CreateManageMembersViewModel);

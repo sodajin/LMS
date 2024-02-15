@@ -21,6 +21,7 @@ namespace LibraryManagementSystem.ViewModel
         public string Name => _user.FirstName;
 
         public ICommand BrowseBookCommand { get; }
+        public ICommand ViewAccountCommand { get; }
         public ICommand LogOutCommand { get; }
 
         public MemberDashboardViewModel(User user, NavigationStore navigationStore, Func<ViewModelBase> createLogInViewModel, Library library)
@@ -32,14 +33,23 @@ namespace LibraryManagementSystem.ViewModel
             _dashboardNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             BrowseBookCommand = new NavigateSearchBooksCommand(_dashboardNavigationStore, new List<Book>(), "", CreateSearchBooksViewModel);
+            ViewAccountCommand = new NavigateCommand(_dashboardNavigationStore, CreateViewAccountViewModel);
             LogOutCommand = new LogOutCommand(_navigationStore, createLogInViewModel);
         }
 
         private SearchBooksViewModel CreateSearchBooksViewModel(List<Book> results, string searchText)
-       {
-           return new SearchBooksViewModel(_library, results, searchText, _dashboardNavigationStore, CreateSearchBooksViewModel);
-       }
-       private void OnCurrentViewModelChanged()
+        {
+           return new SearchBooksViewModel(_library, results, searchText, _dashboardNavigationStore, CreateSearchBooksViewModel, CreateBookViewModel);
+        }
+        private ViewAccountViewModel CreateViewAccountViewModel()
+        {
+            return new ViewAccountViewModel();
+        }
+        private BookViewModel CreateBookViewModel(Book book, List<Book> recentResults, string recentSearchText)
+        {
+            return new BookViewModel(_library, book, _user, _dashboardNavigationStore, recentResults, recentSearchText, CreateSearchBooksViewModel);
+        }
+        private void OnCurrentViewModelChanged()
        {
            OnPropertyChanged(nameof(CurrentDashboardViewModel));
        }

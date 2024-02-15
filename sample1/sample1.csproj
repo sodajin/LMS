@@ -166,16 +166,19 @@
     <Compile Include="Commands\NavigateSearchBooksCommand.cs" />
     <Compile Include="Commands\ClearPenaltyCommand.cs" />
     <Compile Include="Commands\PenalizeCommand.cs" />
+    <Compile Include="Commands\RequestBookCommand.cs" />
     <Compile Include="Commands\ReturnBookCommand.cs" />
     <Compile Include="Commands\SearchBorrowedBooksCommand.cs" />
     <Compile Include="Commands\SearchUserCommand.cs" />
     <Compile Include="Commands\SearchBooksCommand.cs" />
     <Compile Include="Model\RequestedBook.cs" />
+    <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\RequestedBookTableViewModel.cs" />
     <Compile Include="ViewModel\BorrowedBooksTableViewModel.cs" />
     <Compile Include="ViewModel\BorrowedBooksViewModel.cs" />
     <Compile Include="ViewModel\EditBookViewModel.cs" />
     <Compile Include="ViewModel\MemberTableViewModel.cs" />
+    <Compile Include="ViewModel\ViewAccountViewModel.cs" />
     <Compile Include="View\AddMemberView.xaml.cs">
       <DependentUpon>AddMemberView.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,9 @@
     </Compile>
     <Compile Include="View\SearchBookView.xaml.cs">
       <DependentUpon>SearchBookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewAccountView.xaml.cs">
+      <DependentUpon>ViewAccountView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AddMemberView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -305,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SearchBookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ViewAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

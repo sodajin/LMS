@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace sample1.View
 {
     /// <summary>
-    /// Interaction logic for BookView.xaml
+    /// Interaction logic for ViewAccountView.xaml
     /// </summary>
-    public partial class BookView : UserControl
+    public partial class ViewAccountView : UserControl
     {
-        public BookView()
+        public ViewAccountView()
         {
             InitializeComponent();
         }

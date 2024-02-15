@@ -15,8 +15,8 @@
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Border Background="White"/>
+            
+            
 
             <Border Grid.Column="0" CornerRadius="0,45,45,0">
                 <Border.Background>
@@ -70,7 +70,7 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand">
+                    <RadioButton Grid.Row="2" Style="{StaticResource DashboardBtn}" Cursor="Hand" Command="{Binding ViewAccountCommand}" >
                         <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                             <Icons:PackIconMaterial Kind="AccountDetails" Style="{StaticResource DashboardBtnIcon}"/>
                             <TextBlock Text="View Account" Style="{StaticResource DashboardBtnTxt}"/>
@@ -117,6 +117,12 @@
                 <Border.Resources>
                     <DataTemplate DataType="{x:Type vms:SearchBooksViewModel}">
                         <views:SearchBooksView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:ViewAccountViewModel}">
+                        <views:ViewAccountView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vms:BookViewModel}">
+                        <views:BookView/>
                     </DataTemplate>
                 </Border.Resources>
                 <ContentControl Content="{Binding CurrentDashboardViewModel}"/>

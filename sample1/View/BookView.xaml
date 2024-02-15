@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="LibraryManagementSystem.BookView"
+﻿<UserControl x:Class="sample1.View.BookView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:local="clr-namespace:LibraryManagementSystem"
+             xmlns:local="clr-namespace:sample1"
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1200">
 
@@ -68,38 +68,38 @@
                     <!--ISBN-->
                     <TextBlock Grid.Row="1" Margin="40,0" Text="ISBN" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <TextBox Grid.Row="1" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" Foreground="#e9ecef" FontSize="16" FontWeight="Medium" Text="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--TITLE-->
                     <TextBlock Grid.Row="2" Margin="40,0" Text="TITLE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <TextBox Grid.Row="2" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" Foreground="#e9ecef" FontSize="16" FontWeight="Medium" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--AUTHOR-->
                     <TextBlock Grid.Row="3" Margin="40,0" Text="AUTHOR(S)" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" Foreground="#e9ecef" FontSize="16" FontWeight="Medium" Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--PUBLISHER-->
                     <TextBlock Grid.Row="4" Margin="40,0" Text="PUBLISHER" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <TextBox Grid.Row="4" Grid.Column="1" Margin="15,15,40,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#e9ecef" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="15,15,40,15" Background="Transparent"  Foreground="#e9ecef"  FontSize="16" FontWeight="Medium" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--DATE-->
                     <TextBlock Grid.Row="5" Margin="40,0,40,20" Text="DATE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
                     <TextBlock Grid.Row="5" Margin="40,20,40,0" Text="PUBLISHED" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <DatePicker Grid.Row="5" Grid.Column="1" Margin="12,10,41,10" Background="Transparent" BorderBrush="Transparent" Foreground="#212529" VerticalContentAlignment="Center" FontSize="16" FontWeight="Medium" SelectedDate="{Binding DatePublished, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="12,10,41,10" Background="Transparent" Foreground="#e9ecef" FontSize="16" FontWeight="Medium" Text="{Binding DatePublished, UpdateSourceTrigger=PropertyChanged}" />
 
                     <!--GENRE-->
                     <TextBlock Grid.Row="6" Margin="40,0" Text="GENRE" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <ComboBox Grid.Row="6" Grid.Column="1" Margin="15,14,70,15" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding GenreItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Margin="15,14,70,15" Background="Transparent" Foreground="#e9ecef" FontSize="14" FontWeight="Medium" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--STATUS-->
                     <TextBlock Grid.Row="7" Margin="40,0" Text="STATUS" VerticalAlignment="Center" FontFamily="Helvetica" FontSize="18" FontWeight="Medium" Foreground="#e9ecef"/>
 
-                    <ComboBox Grid.Row="7" Grid.Column="1" Margin="15,15,70,14" Background="Transparent" BorderBrush="LightGray" BorderThickness="0,0,0,1" Foreground="#212529" VerticalContentAlignment="Center" FontSize="14" FontWeight="Medium" ItemsSource="{Binding BookStatuses, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Availability, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Margin="15,15,70,14" Background="Transparent"  Foreground="#e9ecef"  FontSize="14" FontWeight="Medium" Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}"/>
 
                 </Grid>
 
@@ -110,8 +110,8 @@
         <!--BUTTONS-->
         <Grid Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal" Margin="200,30,180,30">
-                <Button Style="{StaticResource BasicBtn}" Content="REQUEST" Width="150" Margin="0,0,20,0" Command="{Binding EditBookCommand}"/>
-                <Button Style="{StaticResource BasicBtn}" Content="CANCEL" Width="120" Command="{Binding CancelCommand}"/>
+                <Button Style="{StaticResource BasicBtn}" Content="REQUEST" Width="150" Margin="0,0,20,0" Command="{Binding RequestBookCommand}"/>
+                <Button Style="{StaticResource BasicBtn}" Content="RETURN TO BOOK VIEW" Width="300" Command="{Binding ReturnCommand}"/>
             </StackPanel>
         </Grid>
 
