@@ -12,10 +12,42 @@
     <BitmapImage x:Key="img08" UriSource="/Resources/LogInBackground/IMG_08.png"/>
 
     <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
-        <Setter Property="Background" Value="#b6b6b6" />
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Background" Value="#212529"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Medium" />
-        <Setter Property="Padding" Value="0, 5" />
-        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="Foreground" Value="#e9ecef"/>
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="Height" Value="50"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#212529"/>
+                <Setter Property="Foreground" Value="#e9ecef"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ListViewItem}"  x:Key="ListViewItemContainerStyle">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#343a40"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Helvetica"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#fdf8e1"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#fdf8e1"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

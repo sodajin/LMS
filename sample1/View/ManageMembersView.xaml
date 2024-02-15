@@ -6,16 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="900">
-    <UserControl.Resources>
-        <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="#b6b6b6" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Padding" Value="0, 5" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-        </Style>
-    </UserControl.Resources>
+             d:DesignHeight="750" d:DesignWidth="1200">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,88 +14,90 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="0,60,0,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,60,0,0" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="940"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBox Margin="20" Padding="20" FontSize="15" Width="660"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}"/>
-            </StackPanel>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="638,0,0,0" Width="62" VerticalAlignment="Center" Height="35">
-                <Icons:PackIconMaterial Kind="Magnify" Foreground="Gray" Height="31" Width="30" />
+                <TextBox Margin="20" Padding="20" FontSize="15" Width="895"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}" Background="Transparent"/>
             </StackPanel>
 
-            <Border Grid.Column="1" Margin="20">
+            <Border Grid.Column="1" Margin="20,20,20,20">
                 <Button Style="{DynamicResource BasicBtn}" Command="{Binding SearchUserCommand}">
                     SEARCH
                 </Button>
             </Border>
         </Grid>
 
-        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding MemberTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
-        <ListView.ItemContainerStyle>
-            <Style TargetType="ListViewItem">
-                <Setter Property="Background" Value="#dad9d7" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="BorderBrush" Value="#BAB9B6" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-            </Style>
-        </ListView.ItemContainerStyle>
-        <ListView.View>
-            <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
-                <GridViewColumn Header="Member ID" Width="150">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MemberID}" />
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="Name" Width="200">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MemberName}" />
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="Username" Width="150">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MemberUsername}" />
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="Penalty" Width="100">
-                    <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding MemberPenalty}" />
-                        </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-            </GridView>
-        </ListView.View>
-    </ListView>
-    <Grid Grid.Row="2">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Margin="20">
-            <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddMemberCommand}">
-                ADD MEMBER
-            </Button>
-        </Border>
-        <Border Grid.Column="1" Margin="20">
-            <Button Style="{DynamicResource BasicBtn}" Command="{Binding PenalizeCommand}">
-                PENALIZE MEMBER
-            </Button>
-        </Border>
-        <Border Grid.Column="2" Margin="200,20,30,20">
-            <Button Style="{DynamicResource BasicBtn}" Command="{Binding ClearPenaltyCommand}">
-                CLEAR PENALTY
-            </Button>
-        </Border>
+        <ListView Grid.Row="1" Grid.Column="1" Height="500" ItemsSource="{Binding MemberTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
+                    <GridViewColumn Header="MEMBER ID" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MemberID}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="NAME" Width="400">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MemberName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="USERNAME" Width="360">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MemberUsername}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="CREDIT" Width="134">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MemberPenalty}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="49*"/>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="23*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Margin="0,20,0,20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding AddMemberCommand}">
+                    ADD MEMBER
+                </Button>
+            </Border>
+            <Border Grid.Column="2" Margin="20,20,20,20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding PenalizeCommand}">
+                    PENALIZE MEMBER
+                </Button>
+            </Border>
+            <Border Grid.Column="3" Margin="0,20,0,20">
+                <Button Style="{DynamicResource BasicBtn}" Command="{Binding ClearPenaltyCommand}">
+                    CLEAR PENALTY
+                </Button>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

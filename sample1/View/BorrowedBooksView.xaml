@@ -7,15 +7,7 @@
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="900">
-    <UserControl.Resources>
-        <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="#b6b6b6" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Padding" Value="0, 5" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-        </Style>
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -40,15 +32,7 @@
                 </Button>
             </Border>
         </Grid>
-        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="#dad9d7" />
-                    <Setter Property="FontSize" Value="16" />
-                    <Setter Property="BorderBrush" Value="#BAB9B6" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                </Style>
-            </ListView.ItemContainerStyle>
+        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
                     <GridViewColumn Header="Member ID" Width="150">

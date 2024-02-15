@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1500">
 
+    <!--ERROR MESSAGE ANIMATION-->
     <UserControl.Resources>
         <Storyboard x:Key="ShakeAuthentication">
             <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
@@ -36,15 +37,13 @@
 
     <Border>
         <Grid>
-
-            <!-- Transition images in the background -->
+            <!--BACKGROUND TRANSITION-->
             <Image Source="{StaticResource img01}">
                 <Image.Triggers>
                     <EventTrigger RoutedEvent="Loaded">
                         <BeginStoryboard>
                             <Storyboard>
 
-                                <!-- Fade Out -->
                                 <DoubleAnimation
                                     Storyboard.TargetProperty="Opacity" 
                                     SpeedRatio="1"
@@ -52,7 +51,6 @@
                                     Duration="0:0:5"
                                     RepeatBehavior="Forever"/>
 
-                                <!-- Fade In -->
                                 <DoubleAnimation
                                     Storyboard.TargetProperty="Opacity" 
                                     SpeedRatio="1"
@@ -60,7 +58,6 @@
                                     Duration="0:0:5"
                                     RepeatBehavior="Forever"/>
 
-                                <!-- Switching images -->
                                 <ObjectAnimationUsingKeyFrames
                                     Storyboard.TargetProperty="Source"
                                     Duration="0:0:40"
@@ -79,7 +76,7 @@
                 </Image.Triggers>
             </Image>
 
-            <!-- Purple tint -->
+            <!--BACKGROUND TINT-->
             <Border BorderThickness=".3" Opacity=".5">
                 <Border.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -97,7 +94,7 @@
                 </Border.Background>
             </Border>
 
-            <!-- Login box -->
+            <!--LOGIN BOX-->
             <Grid x:Name="LoginBox" RenderTransformOrigin="0.5,0.5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -110,7 +107,7 @@
                 <Border CornerRadius="20" Background="#5C0099" Margin="450,0,450,55" Opacity=".76" Grid.Row="2" Width="300">
                     <StackPanel>
 
-                        <!-- Member ID -->
+                        <!--MEMBER ID-->
                         <StackPanel Margin="0,40,0,0" Width="225" Height="16">
                             <TextBlock Style="{StaticResource LogInDetails}" Text="MEMBER ID"/>
                         </StackPanel>
@@ -118,7 +115,7 @@
                             <TextBox x:Name="memberId" Style="{StaticResource LogInInputBox}" Height="30" Text="{Binding MemberID, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <!-- Username -->
+                        <!--USERNAME-->
                         <StackPanel Margin="0,20,0,0" Width="225" Height="16">
                             <TextBlock Style="{StaticResource LogInDetails}" Text="USERNAME"/>
                         </StackPanel>
@@ -126,7 +123,7 @@
                             <TextBox x:Name="userName" Style="{StaticResource LogInInputBox}" Height="30" Text="{Binding MemberUsername, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <!-- Password -->
+                        <!--PASSWORD-->
                         <StackPanel Margin="0,20,0,0" Width="225" Height="16">
                             <TextBlock Style="{StaticResource LogInDetails}" Text="PASSWORD"/>
                         </StackPanel>
@@ -134,7 +131,7 @@
                             <TextBox x:Name="enterPassword" Style="{StaticResource LogInInputBox}" Height="30" Text="{Binding MemberPassword}"/>
                         </StackPanel>
 
-                        <!-- Authentication -->
+                        <!--AUTHENTICATION-->
                         <StackPanel Margin="0,20,0,0"  Width="224" Height="26">
                             <TextBlock x:Name="txtAuthMessage" HorizontalAlignment="Center" FontSize="12" FontFamily="Helvetica" FontWeight="Bold" Foreground="White" Text="{Binding AuthMessage, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBlock.RenderTransform>
@@ -154,14 +151,14 @@
                             </TextBlock>
                         </StackPanel>
                         
-                        <!-- Login button -->
+                        <!--LOGIN BUTTON-->
                         <StackPanel Margin="0,20,0,0" Width="224" Height="37">
                             <Button x:Name="logInBtn" Style="{StaticResource LoginBtn}" Content="LOG IN" Click="LoginButton_Click" Height="36" FontSize="16" Command="{Binding LogInButton}"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
                 
-                <!-- Animate Login Box -->
+                <!--LOGIN BOX ANIMATION-->
                 <Grid.RenderTransform>
                     <TranslateTransform/>
                 </Grid.RenderTransform>
@@ -171,7 +168,7 @@
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetName="LoginBox"
                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                    From="0" To="-15" Duration="0:0:2" />
+                                    From="0" To="-15" Duration="0:0:1" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>

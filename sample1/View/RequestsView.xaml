@@ -6,31 +6,15 @@
              xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="900">
-    <UserControl.Resources>
-        <Style x:Key="HeaderTableStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Background" Value="#b6b6b6" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Padding" Value="0, 5" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-        </Style>
-    </UserControl.Resources>
-    <Grid>
+             d:DesignHeight="750" d:DesignWidth="1200">
+
+    <Grid Background="White">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListView Grid.Row="0" Margin="20,60,20,0"  Height="580" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Background" Value="#dad9d7" />
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="BorderBrush" Value="#BAB9B6" />
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <ListView Grid.Row="0" Margin="20,60,20,0"  Height="580" Foreground="#000000" ItemsSource="{Binding BookTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" >
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
                         <GridViewColumn Header="ISBN" Width="150">
