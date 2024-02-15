@@ -36,6 +36,10 @@ namespace LibraryManagementSystem.Model
         {
             return BorrowedBooks.Where(b => b.Status == Status.Borrowed).ToList();
         }
+        public List<BorrowedBook> GetBorrowedBooksByUser(User user)
+        {
+            return BorrowedBooks.Where(b => b.User == user).ToList();
+        }
         public List<RequestedBook> GetRequestedBooks()
         {
             return RequestedBooks;

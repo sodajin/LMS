@@ -43,7 +43,7 @@ namespace LibraryManagementSystem.ViewModel
         }
         private ViewAccountViewModel CreateViewAccountViewModel()
         {
-            return new ViewAccountViewModel();
+            return new ViewAccountViewModel(_user, _library);
         }
         private BookViewModel CreateBookViewModel(Book book, List<Book> recentResults, string recentSearchText)
         {

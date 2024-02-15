@@ -7,7 +7,56 @@
              xmlns:local="clr-namespace:sample1.View"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1200">
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="ViewAccountView" />
+    <Grid Margin="60,60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Margin="0,5" Text="{Binding Name}"/>
+            <TextBlock Grid.Row="1" Margin="0,5" Text="{Binding Username}"/>
+            <TextBlock Grid.Row="2" Margin="0,5" Text="{Binding Reputation}"/>
+        </Grid>
+        <ListView Grid.Row="1" Margin="20,0,20,0"  Height="500" Foreground="#000000" ItemsSource="{Binding BookTable}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
+                    <GridViewColumn Header="Book Title" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding BookTitle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Date Borrowed" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateBorrowed}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Date Due" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateDue}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Date Returned" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateReturned}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </UserControl>
