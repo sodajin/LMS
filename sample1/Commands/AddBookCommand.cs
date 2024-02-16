@@ -8,6 +8,7 @@ using System.Windows.Input;
 using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
+using LibraryManagementSystem.Data;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -47,7 +48,13 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Genre,
                 _viewModel.Availability
             );
+
+            DataContext dataContext = new DataContext();
+            dataContext.SaveBook( newBook );
+
             _library.AddBook(newBook);
+
+            
 
             MessageBox.Show("Add Book Complete");
             _dashboardNavigationStore.CurrentViewModel = _createManageBookViewModel(new List<Book>(), "");

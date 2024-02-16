@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
+using LibraryManagementSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,9 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Password,
                 100, AccountType.Simple
             );
+
+            DataContext dataContext = new DataContext();
+            dataContext.SaveMember( newUser );
 
             _userList.SignUp( newUser );
             _dashboardNavigationStore.CurrentViewModel = _createManageMemberViewModel(new List<User>(), "");

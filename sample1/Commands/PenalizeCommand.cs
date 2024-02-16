@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
@@ -46,6 +47,9 @@ namespace LibraryManagementSystem.Commands
             if (result == MessageBoxResult.No) { return; }
 
             user.AddReputation(-20);
+
+            DataContext dataContext = new DataContext();
+            dataContext.PenalizeMember(user);
 
             _dashboardNavigationStore.CurrentViewModel = _createManageMembersViewModel(new List<User>(), "");
         }

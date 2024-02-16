@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using LibraryManagementSystem.Data;
 
 namespace sample1
 {
@@ -25,70 +26,89 @@ namespace sample1
             _navigationStore = new NavigationStore();
             _library = new Library();
             _users = new UserList();
+            List<User> members = new List<User>();
+            List<Book> books = new List<Book>();
+            DataContext dataContext = new DataContext();
 
-            _library.AddBook(new Book(
-                _library.GetCurrentBookIDAndIncrement(),
-                9784091273437,
-                "Kimetsu no Yaiba, Vol. 1",
-                "Koyoharu Gotouge",
-                "VIZ Media LLC",
-                new DateTime(2016, 2, 15),
-                Genre.Arts,
-                BookStatus.Available
-                )
-            );
-            _library.AddBook(new Book(
-                _library.GetCurrentBookIDAndIncrement(),
-                9781974700523,
-                "Komi-san Can't Communicate",
-                "Tomohito Oda",
-                "Shogakukan",
-                new DateTime(2016, 9, 16),
-                Genre.Arts,
-                BookStatus.Available
-                )
-            );
+            members = dataContext.LoadMembers();
 
-            _users.SignUp(new User(
-                "2021-10945-MN-0",
-                "Genesis",
-                "Cornista",
-                "Lovino",
-                "lezzthanthree",
-                "password",
-                100,
-                AccountType.Admin
-                ));
-            _users.SignUp(new User(
-                "a",
-                "Anthonette",
-                "Villafuente",
-                "Macapanas",
-                "a",
-                "a",
-                100,
-                AccountType.Admin
-                ));
-            _users.SignUp(new User(
-                "2021-10946-MN-0",
-                "Smilie",
-                "",
-                "Pop",
-                "smiliep",
-                "password",
-                100,
-                AccountType.Simple
-                ));
-            _users.SignUp(new User(
-                "s",
-                "Smilie",
-                "",
-                "Pop",
-                "s",
-                "s",
-                100,
-                AccountType.Simple
-                ));
+            foreach (User user in members)
+            {
+                _users.SignUp(user);
+            }
+
+            books = dataContext.LoadBooks();
+
+            foreach (Book book in books)
+            {
+                _library.AddBook(book);
+            }
+
+
+
+            //_library.AddBook(new Book(
+            //    _library.GetCurrentBookIDAndIncrement(),
+            //    9784091273437,
+            //    "Kimetsu no Yaiba, Vol. 1",
+            //    "Koyoharu Gotouge",
+            //    "VIZ Media LLC",
+            //    new DateTime(2016, 2, 15),
+            //    Genre.Arts,
+            //    BookStatus.Available
+            //    )
+            //);
+            //_library.AddBook(new Book(
+            //    _library.GetCurrentBookIDAndIncrement(),
+            //    9781974700523,
+            //    "Komi-san Can't Communicate",
+            //    "Tomohito Oda",
+            //    "Shogakukan",
+            //    new DateTime(2016, 9, 16),
+            //    Genre.Arts,
+            //    BookStatus.Available
+            //    )
+            //);
+
+            //_users.SignUp(new User(
+            //    "2021-10945-MN-0",
+            //    "Genesis",
+            //    "Cornista",
+            //    "Lovino",
+            //    "lezzthanthree",
+            //    "password",
+            //    100,
+            //    AccountType.Admin
+            //    ));
+            //_users.SignUp(new User(
+            //    "a",
+            //    "Anthonette",
+            //    "Villafuente",
+            //    "Macapanas",
+            //    "a",
+            //    "a",
+            //    100,
+            //    AccountType.Admin
+            //    ));
+            //_users.SignUp(new User(
+            //    "2021-10946-MN-0",
+            //    "Smilie",
+            //    "",
+            //    "Pop",
+            //    "smiliep",
+            //    "password",
+            //    100,
+            //    AccountType.Simple
+            //    ));
+            //_users.SignUp(new User(
+            //    "s",
+            //    "Smilie",
+            //    "",
+            //    "Pop",
+            //    "s",
+            //    "s",
+            //    100,
+            //    AccountType.Simple
+            //    ));
 
             _library.RequestBook(_library.Books[1], _users.Users[0]);
 

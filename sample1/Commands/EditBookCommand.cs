@@ -8,6 +8,7 @@ using System.Windows.Input;
 using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
+using LibraryManagementSystem.Data;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -51,6 +52,8 @@ namespace LibraryManagementSystem.Commands
                 _viewModel.Availability
             );
 
+            DataContext dataContext = new DataContext();
+            dataContext.EditBook(modifiedBook);
 
             _library.ReplaceBook(modifiedBook, _index);
 
