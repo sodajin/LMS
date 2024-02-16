@@ -7,6 +7,7 @@ using System.Windows;
 using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
+using LibraryManagementSystem.Data;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -34,6 +35,9 @@ namespace LibraryManagementSystem.Commands
             RequestedBook requestedBook = _library.GetRequestedBookFromElement(_viewModel.SelectIndex);
 
             _library.DenyRequestBook(requestedBook);
+
+            DataContext dataContext = new DataContext();
+            dataContext.RemoveRequest(requestedBook);
 
             MessageBox.Show("Requested book denied");
 

@@ -4,6 +4,9 @@ using LibraryManagementSystem.Model;
 using MahApps.Metro.IconPacks;
 using Npgsql;
 using System.Diagnostics.Metrics;
+using System.Net;
+using NpgsqlTypes;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace LibraryManagementSystem.Data
 {
@@ -87,6 +90,7 @@ namespace LibraryManagementSystem.Data
 
             return members;
         }
+
         public void PenalizeMember(User user)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
@@ -120,6 +124,36 @@ namespace LibraryManagementSystem.Data
                 connection.Close();
             }
         }
+
+        public bool CheckExistingMember(string ID)
+        {
+            bool memberExists = false;
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT memberid FROM members WHERE memberid = @memberid;";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@memberid", ID);
+
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            memberExists = true;
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return memberExists;
+        }
+
 
         public void SaveBook(Book newBook)
         {
@@ -204,5 +238,198 @@ namespace LibraryManagementSystem.Data
             }
         }
 
+        public void RequestBook(Book book, User user)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "INSERT INTO requestbook (bookid, memberid) VALUES (@bookid, @memberid)";
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@bookid", (long)book.ID);
+                    command.Parameters.AddWithValue("@memberid", user.ID);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public List<RequestedBook> LoadRequests(Library library, UserList users)
+        {
+            List<RequestedBook> requests = new List<RequestedBook>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT * FROM requestbook;";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UInt64 bookID = Convert.ToUInt64(reader["bookid"]);
+                            String memberID = reader["memberid"].ToString();
+
+                            User member = users.SearchUserByMemberID(memberID);
+                            Book book = library.GetBookByID(bookID);
+
+                            RequestedBook requestedBook = new RequestedBook(member, book);
+                            requests.Add(requestedBook);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return requests;
+        }
+
+        public void RemoveRequest(RequestedBook request)
+        {
+            Book book= request.GetBook();
+            User user = request.GetUser();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "DELETE FROM requestbook WHERE bookid = @bookid AND memberid = @memberid;";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.Add("@bookid", NpgsqlDbType.Bigint).Value = (long)book.ID;
+                    command.Parameters.Add("@memberid", NpgsqlDbType.Varchar).Value = user.ID;
+
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+
+        }
+
+        public void SaveBorrowedBook(BorrowedBook book)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                
+                string sql = "INSERT INTO borrowedbooks (borrowedbookid, memberid, bookid, dateborrowed, duedate, datereturned, status) VALUES (@borrowedbookid, @memberid, @bookid, @dateborrowed, @duedate, @datereturned, @status)";
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+
+                    command.Parameters.AddWithValue("@borrowedbookid", (long)book.ID);
+                    command.Parameters.AddWithValue("@memberid", book.User.ID);
+                    command.Parameters.AddWithValue("@bookid", (long)book.Book.ID); 
+                    command.Parameters.AddWithValue("@dateborrowed", book.DateBorrowed); 
+                    command.Parameters.AddWithValue("@duedate", book.DateBorrowed.AddDays(3));
+                    command.Parameters.AddWithValue("@datereturned", book.DateReturned);
+                    command.Parameters.AddWithValue("@status", book.Status.ToString());
+
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
+        public List<BorrowedBook> LoadBorrowedBooks(Library library, UserList users)
+        {
+            List<BorrowedBook> borrowedBooks = new List<BorrowedBook>();
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT * FROM borrowedbooks;";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UInt64 bookID = Convert.ToUInt64(reader["bookid"]);
+                            String memberID = reader["memberid"].ToString();
+
+                            User member = users.SearchUserByMemberID(memberID);
+                            Book book = library.GetBookByID(bookID);
+
+                            BorrowedBook borrowedBook = new BorrowedBook(
+                                Convert.ToUInt64(reader["borrowedbookid"]),
+                                member,
+                                book,
+                                (Status)Enum.Parse(typeof(Status), reader["status"].ToString()),
+                                Convert.ToDateTime(reader["dateborrowed"])
+                            );
+
+                            borrowedBook.SetReturnDate(Convert.ToDateTime(reader["datereturned"]));
+
+                            borrowedBooks.Add(borrowedBook);
+                        }
+
+                    }
+                }
+                connection.Close();
+            }
+            return borrowedBooks;
+        }
+
+        public void SetBookReturned(BorrowedBook returnedBook, DateTime dateReturned)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE borrowedbooks SET status = 'Returned', datereturned = @datereturned WHERE borrowedbookid = @borrowedbookid";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@borrowedbookid", (long)returnedBook.ID);
+                    command.Parameters.AddWithValue("@datereturned", dateReturned);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void SetBookUnavailable(Book book)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE books SET status = 'Unavailable' WHERE bookid = @bookid";
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@bookid", (long)book.ID);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void SetBookAvailable(Book book)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "UPDATE books SET status = 'Available' WHERE bookid = @bookid";
+                using (NpgsqlCommand command = new NpgsqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@bookid", (long)book.ID);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
     }
 }

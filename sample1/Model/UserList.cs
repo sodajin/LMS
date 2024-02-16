@@ -37,6 +37,10 @@ namespace LibraryManagementSystem.Model
         {
             return Users.Where(u => u.Match(searchText)).ToList();
         }
+        public User SearchUserByMemberID(string memberID) //new
+        {
+            return Users.FirstOrDefault(u => u.ID == memberID);
+        }
         public List<User> GetSimpleUsers()
         {
             return Users.Where(u => u.AccountType == AccountType.Simple).ToList();

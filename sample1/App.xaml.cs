@@ -28,6 +28,8 @@ namespace sample1
             _users = new UserList();
             List<User> members = new List<User>();
             List<Book> books = new List<Book>();
+            List<RequestedBook> requestedBooks = new List<RequestedBook>();
+            List<BorrowedBook> borrowedBooks = new List<BorrowedBook>();
             DataContext dataContext = new DataContext();
 
             members = dataContext.LoadMembers();
@@ -42,76 +44,25 @@ namespace sample1
             foreach (Book book in books)
             {
                 _library.AddBook(book);
+                _library.GetCurrentBookIDAndIncrement();
             }
 
+            requestedBooks = dataContext.LoadRequests(_library, _users);
 
+            foreach (RequestedBook requestedBook in requestedBooks)
+            {
+                _library.RequestBook2(requestedBook);
+            }
 
-            //_library.AddBook(new Book(
-            //    _library.GetCurrentBookIDAndIncrement(),
-            //    9784091273437,
-            //    "Kimetsu no Yaiba, Vol. 1",
-            //    "Koyoharu Gotouge",
-            //    "VIZ Media LLC",
-            //    new DateTime(2016, 2, 15),
-            //    Genre.Arts,
-            //    BookStatus.Available
-            //    )
-            //);
-            //_library.AddBook(new Book(
-            //    _library.GetCurrentBookIDAndIncrement(),
-            //    9781974700523,
-            //    "Komi-san Can't Communicate",
-            //    "Tomohito Oda",
-            //    "Shogakukan",
-            //    new DateTime(2016, 9, 16),
-            //    Genre.Arts,
-            //    BookStatus.Available
-            //    )
-            //);
+            borrowedBooks = dataContext.LoadBorrowedBooks(_library, _users);
 
-            //_users.SignUp(new User(
-            //    "2021-10945-MN-0",
-            //    "Genesis",
-            //    "Cornista",
-            //    "Lovino",
-            //    "lezzthanthree",
-            //    "password",
-            //    100,
-            //    AccountType.Admin
-            //    ));
-            //_users.SignUp(new User(
-            //    "a",
-            //    "Anthonette",
-            //    "Villafuente",
-            //    "Macapanas",
-            //    "a",
-            //    "a",
-            //    100,
-            //    AccountType.Admin
-            //    ));
-            //_users.SignUp(new User(
-            //    "2021-10946-MN-0",
-            //    "Smilie",
-            //    "",
-            //    "Pop",
-            //    "smiliep",
-            //    "password",
-            //    100,
-            //    AccountType.Simple
-            //    ));
-            //_users.SignUp(new User(
-            //    "s",
-            //    "Smilie",
-            //    "",
-            //    "Pop",
-            //    "s",
-            //    "s",
-            //    100,
-            //    AccountType.Simple
-            //    ));
+            foreach (BorrowedBook borrowedBook in borrowedBooks)
+            {
+                _library.BorrowBook2(borrowedBook);
+            }
 
-            _library.RequestBook(_library.Books[1], _users.Users[0]);
-
+            //_library.RequestBook(_library.Books[1], _users.Users[0]);
+            //_library.BorrowBook(_library.Books[1], _users.Users[0], new DateTime(2023, 2, 14));
             //_library.BorrowBook(_library.Books[0], _users.Users[0], new DateTime(2023, 2, 14));
             //_library.BorrowBook(_library.Books[1], _users.Users[0], new DateTime(2023, 2, 14));
             //_library.ReturnBook(1, DateTime.Today);

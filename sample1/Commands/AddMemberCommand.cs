@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -30,6 +31,20 @@ namespace LibraryManagementSystem.Commands
         }
         public override void Execute(object parameter)
         {
+            DataContext dataContext = new DataContext();
+
+            if (CheckData() == false)
+            {
+                MessageBox.Show("Please input necessary data.", "Incomplete Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (dataContext.CheckExistingMember(_viewModel.ID) == true)
+            {
+                MessageBox.Show("ID already exists. Please choose a different ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             User newUser = new User(
                 _viewModel.ID,    
                 _viewModel.FirstName,
@@ -40,11 +55,25 @@ namespace LibraryManagementSystem.Commands
                 100, AccountType.Simple
             );
 
-            DataContext dataContext = new DataContext();
             dataContext.SaveMember( newUser );
 
             _userList.SignUp( newUser );
             _dashboardNavigationStore.CurrentViewModel = _createManageMemberViewModel(new List<User>(), "");
+        }
+
+        public bool CheckData()
+        {
+            if (
+                _viewModel.ID == null || _viewModel.ID == "" ||
+                _viewModel.FirstName == null || _viewModel.FirstName == "" ||
+                _viewModel.LastName == null || _viewModel.LastName == "" ||
+                _viewModel.Username == null || _viewModel.Username == "" ||
+                _viewModel.Password == null || _viewModel.Password == ""
+                )
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

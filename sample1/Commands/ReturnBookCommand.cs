@@ -1,4 +1,5 @@
-﻿using LibraryManagementSystem.Model;
+﻿using LibraryManagementSystem.Data;
+using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
 using System;
@@ -42,6 +43,9 @@ namespace LibraryManagementSystem.Commands
             _library.ReturnBook(book, DateTime.Now);
 
             _dashboardNavigationStore.CurrentViewModel = _createSearchBorrowedBookViewModel(new List<BorrowedBook>(), "");
+
+            DataContext dataContext = new DataContext();
+            dataContext.SetBookAvailable(book.Book);
         }
     }
 }

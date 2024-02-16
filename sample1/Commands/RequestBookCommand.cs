@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Model;
 using LibraryManagementSystem.Store;
 using LibraryManagementSystem.ViewModel;
+using LibraryManagementSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,10 @@ namespace LibraryManagementSystem.Commands
             }
 
             _library.RequestBook(_book, _user);
+
+            DataContext dataContext = new DataContext();
+            dataContext.RequestBook(_book, _user);
+
             MessageBox.Show($"The book has been requested. Please head to front desk.", "Request Book", MessageBoxButton.OK, MessageBoxImage.Information);
             _dashboardNavigationStore.CurrentViewModel = _createSearchBookViewModel(new List<Book>(), "");
         }

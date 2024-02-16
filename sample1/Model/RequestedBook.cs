@@ -18,5 +18,15 @@ namespace LibraryManagementSystem.Model
             User = user;
             Book = book;
         }
+
+        public User GetUser()
+        {
+            return User;
+        }
+
+        public Book GetBook()
+        {
+            return Book;
+        }
     }
 }

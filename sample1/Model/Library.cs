@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagementSystem.Data;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace LibraryManagementSystem.Model
         public List<RequestedBook> RequestedBooks { get; }
         public ulong CurrentBookID { get; set; }
         public ulong CurrentBorrowedBookID { get; set; }
+        DataContext dataContext = new DataContext();
         //public ulong CurrentRequestedBookID { get; set; }
         public Library()
         {
@@ -31,6 +33,10 @@ namespace LibraryManagementSystem.Model
         public List<Book> GetBooks()
         {
             return Books;
+        }
+        public Book GetBookByID(ulong bookID) //new
+        {
+            return Books.FirstOrDefault(u => u.ID == bookID);
         }
         public List<Book> GetBooksByGenre(Genre genre)
         {
@@ -86,12 +92,17 @@ namespace LibraryManagementSystem.Model
         {
             RequestedBooks.Add(new RequestedBook(user, book));
         }
+        public void RequestBook2(RequestedBook requestedbook) //new
+        {
+            RequestedBooks.Add(requestedbook);
+        }
         public void AcceptRequestBook(RequestedBook requestedBook)
         {
             Book book = requestedBook.Book;
             User user = requestedBook.User;
             BorrowBook(book, user, DateTime.Today);
             RequestedBooks.Remove(requestedBook);
+            dataContext.RemoveRequest(requestedBook);
         }
         public void DenyRequestBook(RequestedBook requestedBook)
         {
@@ -101,13 +112,22 @@ namespace LibraryManagementSystem.Model
         {
             //Book book = GetBookFromID(bookID);
             book.Status = BookStatus.Unavailable;
-            BorrowedBooks.Add(new BorrowedBook(GetCurrentBorrowedBookIDAndIncrement(), user, book, Status.Borrowed, dateBorrowed));
+            dataContext.SetBookUnavailable(book);
+            BorrowedBook borrowedBook = new BorrowedBook(GetCurrentBorrowedBookIDAndIncrement(), user, book, Status.Borrowed, dateBorrowed);
+            BorrowedBooks.Add(borrowedBook);
+            dataContext.SaveBorrowedBook(borrowedBook);
+        }
+        public void BorrowBook2(BorrowedBook borrowedBook)
+        {
+            BorrowedBooks.Add(borrowedBook);
+            GetCurrentBorrowedBookIDAndIncrement();
         }
         public void ReturnBook(BorrowedBook book, DateTime dateReturned)
         {
             //BorrowedBook book = GetBorrowedBookFromID(bookID);
             book.Status = Status.Returned;
             book.SetReturnDate(dateReturned);
+            dataContext.SetBookReturned(book, dateReturned);
             ulong getID = book.Book.ID;
             Books.FirstOrDefault(b => b.ID == getID).Status = BookStatus.Available;
         }
