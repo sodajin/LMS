@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -29,9 +30,10 @@ namespace LibraryManagementSystem.Commands
         }
         public override void Execute(object parameter)
         {
-            if (CheckData() == true)
+            if (CheckData() == false)
             {
-
+                MessageBox.Show("Please input necessary data.", "Incomplete data", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
             User newUser = new User(
