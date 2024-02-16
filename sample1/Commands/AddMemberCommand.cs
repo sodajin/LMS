@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LibraryManagementSystem.Commands
 {
@@ -29,8 +30,14 @@ namespace LibraryManagementSystem.Commands
         }
         public override void Execute(object parameter)
         {
+            if (CheckData() == false)
+            {
+                MessageBox.Show("Please input necessary data.", "Incomplete data", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             User newUser = new User(
-                _viewModel.ID,    
+                _viewModel.ID,
                 _viewModel.FirstName,
                 _viewModel.MiddleName,
                 _viewModel.LastName,
@@ -39,8 +46,21 @@ namespace LibraryManagementSystem.Commands
                 100, AccountType.Simple
             );
 
-            _userList.SignUp( newUser );
+            _userList.SignUp(newUser);
             _dashboardNavigationStore.CurrentViewModel = _createManageMemberViewModel(new List<User>(), "");
+        }
+
+        public bool CheckData()
+        {
+            if (
+                _viewModel.ID == null || _viewModel.ID == "" ||
+                _viewModel.FirstName == null || _viewModel.FirstName == "" ||
+                _viewModel.MiddleName == null || _viewModel.MiddleName == "" ||
+                _viewModel.LastName == null || _viewModel.LastName == "" ||
+                _viewModel.Username == null || _viewModel.Username == "" ||
+                _viewModel.Password == null || _viewModel.Password == ""
+                ) return false;
+                return true;
         }
     }
 }
