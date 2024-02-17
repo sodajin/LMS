@@ -23,7 +23,6 @@ namespace LibraryManagementSystem.Model
     }
     public enum BookStatus
     {
-        ForViewing,
         Available,
         Unavailable
     }

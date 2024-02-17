@@ -27,7 +27,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBox Margin="20" Padding="20" FontSize="15" Width="895"  BorderThickness="0,0,0,3" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}" Background="Transparent"/>
+                <TextBox Margin="20" Padding="20" FontSize="15" Width="895"  BorderThickness="0,0,0,2" BorderBrush="Gray" FontFamily="Helvetica" FontWeight="Light" Text="{Binding SearchText}" Background="Transparent"/>
             </StackPanel>
 
             <Border Grid.Column="1" Margin="20,20,20,20">
@@ -37,7 +37,7 @@
             </Border>
         </Grid>
 
-        <ListView Grid.Row="1" Grid.Column="1" Height="500" ItemsSource="{Binding MemberTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+        <ListView Grid.Row="1" Grid.Column="1" Height="500" Margin="20,0" ItemsSource="{Binding MemberTable}" SelectedIndex="{Binding SelectIndex, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
 
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource HeaderTableStyle}">
@@ -49,7 +49,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="NAME" Width="400">
+                    <GridViewColumn Header="NAME" Width="360">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding MemberName}" />
@@ -76,7 +76,7 @@
             </ListView.View>
         </ListView>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" Margin="20,3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="49*"/>

@@ -46,7 +46,7 @@ namespace LibraryManagementSystem.Commands
             }
 
             User newUser = new User(
-                _viewModel.ID,    
+                _viewModel.ID,
                 _viewModel.FirstName,
                 _viewModel.MiddleName,
                 _viewModel.LastName,
@@ -66,14 +66,12 @@ namespace LibraryManagementSystem.Commands
             if (
                 _viewModel.ID == null || _viewModel.ID == "" ||
                 _viewModel.FirstName == null || _viewModel.FirstName == "" ||
+                _viewModel.MiddleName == null || _viewModel.MiddleName == "" ||
                 _viewModel.LastName == null || _viewModel.LastName == "" ||
                 _viewModel.Username == null || _viewModel.Username == "" ||
                 _viewModel.Password == null || _viewModel.Password == ""
-                )
-            {
-                return false;
-            }
-            return true;
+                ) return false;
+                return true;
         }
     }
 }
